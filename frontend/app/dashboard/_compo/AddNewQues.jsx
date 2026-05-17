@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useUserStore from "@/utils/zustandStore/userStore";
 import axios from "axios";
-import { p } from "motion/react-client";
 
 const AddNewQues = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -39,7 +38,7 @@ const AddNewQues = () => {
       console.log(response.data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error.response?.data);
       setLoading(false);
     }
   };

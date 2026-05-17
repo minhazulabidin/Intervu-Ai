@@ -2,7 +2,7 @@ import { UserButton } from '@clerk/nextjs'
 import React from 'react'
 import AddNewQues from './_compo/AddNewQues'
 
-const page = () => {
+const DashBoard = () => {
   return (
     <div className='max-w-full md:max-w-7xl mx-auto p-10'>
       <h2 className='text-2xl font-bold'>Dashboard</h2>
@@ -14,4 +14,4 @@ const page = () => {
   )
 }
 
-export default page
+export default DashBoard
