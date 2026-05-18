@@ -118,9 +118,16 @@ Do not add explanation text.
   });
 });
 
-
 exports.getQuestionController = asyncController(async (req, res) => {
   const question = await questionsModel.find({});
+
+  apiResponse(res, 200, "Question found successfully", question);
+});
+
+exports.getSingleQuestionController = asyncController(async (req, res) => {
+  const { id } = req.params;
+
+  const question = await questionsModel.findById(id);
 
   apiResponse(res, 200, "Question found successfully", question);
 });
