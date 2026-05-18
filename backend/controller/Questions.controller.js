@@ -7,16 +7,15 @@ const userModel = require("../model/user.model");
 exports.addQuestionController = asyncController(async (req, res) => {
   const { jobPosition, jobDescription, jobExperience, email } = req.body;
 
-  // validation
   if (!jobPosition || !jobDescription || !jobExperience || !email) {
-    throw new Error("All fields are required");
+    return apiResponse(res, 400, "All fields are required");
   }
 
   // find user
   const user = await userModel.findOne({ email });
 
   if (!user) {
-    throw new Error("User not found");
+    return apiResponse(res, 404, "User not found");
   }
 
   // init gemini
@@ -63,9 +62,9 @@ Do not add explanation text.
       },
     });
   } catch (err) {
-    console.log("GEMINI ERROR =>", err);
-
-    throw new Error("AI generation failed");
+    return apiResponse(res, 500, "AI generation failed", {
+      error: err.message,
+    });
   }
 
   // get text
@@ -73,10 +72,14 @@ Do not add explanation text.
 
   try {
     text = response.text;
-  } catch (err) {
-    console.log("TEXT READ ERROR =>", err);
 
-    throw new Error("Failed to read AI response");
+    if (!text) {
+      return apiResponse(res, 500, "AI returned empty response");
+    }
+  } catch (err) {
+    return apiResponse(res, 500, "Failed to read AI response", {
+      error: err.message,
+    });
   }
 
   // parse json
@@ -85,12 +88,13 @@ Do not add explanation text.
   try {
     parsed = JSON.parse(text);
   } catch (err) {
-    console.log("JSON PARSE ERROR =>", err);
-    console.log("INVALID JSON =>", text);
-
-    throw new Error("AI response parsing failed");
+    return apiResponse(res, 500, "AI response parsing failed", {
+      error: err.message,
+      rawResponse: text,
+    });
   }
 
+  // save database
   let saved;
 
   try {
@@ -102,17 +106,18 @@ Do not add explanation text.
       qaList: parsed,
     });
   } catch (err) {
-    console.log("DATABASE SAVE ERROR =>", err);
-
-    throw new Error("Failed to save questions");
+    return apiResponse(res, 500, "Failed to save questions", {
+      error: err.message,
+    });
   }
 
-  // response
+  // success response
   apiResponse(res, 200, "Questions generated successfully", {
     questions: parsed,
     savedId: saved._id,
   });
 });
+
 
 exports.getQuestionController = asyncController(async (req, res) => {
   const question = await questionsModel.find({});

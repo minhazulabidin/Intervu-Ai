@@ -11,10 +11,10 @@ export default function SyncUser() {
     useEffect(() => {
         if (isLoaded && user) {
             setUser({
-                id: user.id,
-                fullName: user.fullName,
-                email: user.primaryEmailAddress?.emailAddress,
-                image: user.imageUrl,
+                id: user?.id,
+                fullName: user?.fullName,
+                email: user?.primaryEmailAddress?.emailAddress,
+                image: user?.imageUrl,
             });
         }else{
             setUser(null);

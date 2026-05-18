@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import useUserStore from "@/utils/zustandStore/userStore";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const AddNewQues = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -20,8 +21,8 @@ const AddNewQues = () => {
   const [jobExperience, setJobExperience] = useState(0);
   const [loading, setLoading] = useState(false);
   const user = useUserStore((state) => state.user);
-
-  // console.log(clerkId)
+  const [questionsData, setQuestionsData] = useState([])
+  const router = useRouter()
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -32,13 +33,25 @@ const AddNewQues = () => {
       jobExperience,
       email: user?.email,
     };
+
     try {
       setLoading(true);
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/questions/addQuestions`, questionData);
-      console.log(response.data);
-      setLoading(false);
+
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/addQuestions`,
+        questionData
+      );
+
+      setQuestionsData(response.data);
+
+      const saveId = response?.data?.data?.savedId;
+
+      setOpenDialog(false);
+
+      router.push(`/dashboard/interview/${saveId}`);
     } catch (error) {
       console.log(error.response?.data);
+    } finally {
       setLoading(false);
     }
   };
