@@ -31,13 +31,21 @@ const InterviewId = () => {
       fetchData();
     }
   }, [id]);
-
+console.log(question)
 
   return <main>
     <div className="w-full max-w-7xl mx-auto">
       <div className="mt-10">
         <h2 className="font-bold text-2xl text-center uppercase">Let's get start</h2>
       </div>
+      <div className="grid grid-cols-2 gap-5">
+        <div>
+        <div className="border px-5 py-3 space-y-3">
+          <h2>Job Role/Job Position: {question?.jobPosition} </h2>
+          <h2>Job Description/Tech Stack: {question?.jobDescription}</h2>
+          <h2>Years of Experience: {question?.jobExperience} Years</h2>
+        </div>
+        </div>
       <div className="flex justify-center">
         {
           enableWebCam
@@ -52,14 +60,14 @@ const InterviewId = () => {
               }}
             />
             :
-            <div className="flex flex-col">
-            <WebcamIcon className="p-20 h-82 w-82 bg-secondary rounded-lg" size={80} />
+            <div className="flex flex-col w-full">
+            <WebcamIcon className=" h-82 w-full bg-secondary rounded-lg" size={80} />
             <button className="bg-primary px-6 py-3 rounded-lg mt-3 text-white cursor-pointer hover:scale-102 active:scale-90 duration-200" onClick={()=>setEnableWebCam(true)}>Enable Webcam And Microphone</button>
             </div>
         }
-
-
       </div>
+      </div>
+        
     </div>
   </main>;
 };
