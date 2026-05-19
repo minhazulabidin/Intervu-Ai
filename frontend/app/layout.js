@@ -1,12 +1,12 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
 });
-
 
 export const metadata = {
   title: "Mock Up",
@@ -16,12 +16,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
-      <html
-        lang="en"
-        className={`${outfit.variable} h-full antialiased`}
-      >
+      <html lang="en" className={`${outfit.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col font-outfit">
-      
+          <Toaster />
           {children}
         </body>
       </html>

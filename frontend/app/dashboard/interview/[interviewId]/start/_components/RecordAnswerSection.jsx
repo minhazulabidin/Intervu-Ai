@@ -6,6 +6,7 @@ import webcamImg from "../../../../../../public/webcam.png"
 import { Button } from '@/components/ui/button'
 import useSpeechToText from 'react-hook-speech-to-text'
 import { Mic } from 'lucide-react'
+import { toast } from 'sonner'
 
 const RecordAnswerSection = () => {
     const [userAnswer, setUserAnswer] = useState('')
@@ -28,6 +29,10 @@ const RecordAnswerSection = () => {
     const handleSpeechToText = () => {
         if (isRecording) {
             stopSpeechToText()
+            if (userAnswer.length < 10) {
+                toast("Error while saving your answer, Please record again")
+                return;
+            }
         } else {
             startSpeechToText()
         }
