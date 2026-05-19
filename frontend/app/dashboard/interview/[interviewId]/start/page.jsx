@@ -4,10 +4,12 @@ import axios from "axios";
 import React, { use, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import QuestionSection from "./_components/QuestionSection";
+import RecordAnswerSection from "./_components/RecordAnswerSection";
 
 const StartPage = () => {
     const [interviewData, setInterviewData] = useState([]);
     const [mockInterViewquestion, setMockInterviewQuestion] = useState([]);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const params = useParams();
     const id = params?.interviewId;
@@ -36,10 +38,13 @@ const StartPage = () => {
     return <main className="w-full max-w-7xl mx-auto">
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* questions*/}
-            <QuestionSection mockInterViewquestion={mockInterViewquestion}/>
+            <QuestionSection
+                interviewData={interviewData}
+                activeIndex={activeIndex}
+            />
 
             {/* video / audio*/}
-
+            <RecordAnswerSection />
         </section>
     </main>;
 };
