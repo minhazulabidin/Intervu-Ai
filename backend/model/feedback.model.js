@@ -9,11 +9,15 @@ const feedbackSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    question: {
+    currentQuestion: {
         type: String,
         required: true
     },
-    answer: {
+    currentAnswer: {
+        type: String,
+        required: true
+    },
+    userAnswer: {
         type: String,
         required: true
     },

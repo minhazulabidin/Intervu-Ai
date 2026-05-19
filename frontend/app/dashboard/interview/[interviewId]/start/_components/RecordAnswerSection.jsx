@@ -1,17 +1,32 @@
-"use client"
-import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
-import Webcam from 'react-webcam'
-import webcamImg from "../../../../../../public/webcam.png"
-import { Button } from '@/components/ui/button'
-import useSpeechToText from 'react-hook-speech-to-text'
-import { Mic } from 'lucide-react'
-import { toast } from 'sonner'
+"use client";
 
-const RecordAnswerSection = ({ mockInterviewQuestion, activeIndex, setActiveIndex }) => {
-    const [userAnswer, setUserAnswer] = useState('')
-    const currentQuestion = mockInterviewQuestion[activeIndex]?.question;
-    const currentAnswer = mockInterviewQuestion[activeIndex]?.answer;
+import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
+import Webcam from "react-webcam";
+import webcamImg from "../../../../../../public/webcam.png";
+import { Button } from "@/components/ui/button";
+import useSpeechToText from "react-hook-speech-to-text";
+import { Mic } from "lucide-react";
+import { toast } from "sonner";
+import axios from "axios";
+import { useUser } from "@clerk/nextjs";
+
+const RecordAnswerSection = ({
+    mockInterviewQuestion,
+    activeIndex,
+    setActiveIndex,
+}) => {
+
+    const [isSaving, setIsSaving] = useState(false);
+
+    const currentQuestion =
+        mockInterviewQuestion?.[activeIndex]?.question;
+
+    const currentAnswer =
+        mockInterviewQuestion?.[activeIndex]?.answer;
+
+    const { user, isLoaded } = useUser();
+
     const {
         error,
         interimResult,
@@ -21,58 +36,227 @@ const RecordAnswerSection = ({ mockInterviewQuestion, activeIndex, setActiveInde
         stopSpeechToText,
     } = useSpeechToText({
         continuous: true,
-        useLegacyResults: false
+        useLegacyResults: false,
     });
-    
-    
+
+    /*
+    ====================================
+    FINAL USER ANSWER
+    ====================================
+    */
+
+    const finalAnswer = useMemo(() => {
+        return results
+            .map((result) => result.transcript)
+            .join(" ")
+            .trim();
+    }, [results]);
+
+    /*
+    ====================================
+    SPEECH ERROR
+    ====================================
+    */
 
     useEffect(() => {
-        results && results.map(result => setUserAnswer(prev => prev + result.transcript))
-    }, [results])
-
-    const handleSpeechToText = () => {
-        if (isRecording) {
-            stopSpeechToText()
-            if (userAnswer.length < 10) {
-                toast("Error while saving your answer, Please record again")
-                return;
-            }
-
-            const feedbackPrompt = `Question:${currentQuestion}, User Answer:${userAnswer}, Correct Answer:${currentAnswer}. Depend on question and user answer for give interview question. Please give us rating for answer nad feedback as area of improvement if any in just 3 to 5 lines to improve it in JSON format with rating field and feedback field.`;
-        } else {
-            startSpeechToText()
+        if (error) {
+            toast.error("Speech recognition error");
+            console.log(error);
         }
-    }
+    }, [error]);
+
+    /*
+    ====================================
+    START / STOP RECORDING
+    ====================================
+    */
+
+    const handleSpeechToText = async () => {
+
+        /*
+        ====================================
+        STOP RECORDING
+        ====================================
+        */
+
+        if (isRecording) {
+
+            stopSpeechToText();
+
+            setTimeout(async () => {
+
+                /*
+                ====================================
+                VALIDATION
+                ====================================
+                */
+
+                if (!finalAnswer || finalAnswer.length < 10) {
+                    toast.error(
+                        "Answer is too short. Please record again."
+                    );
+                    return;
+                }
+
+                if (!user?.primaryEmailAddress?.emailAddress) {
+                    toast.error("User email not found");
+                    return;
+                }
+
+                /*
+                ====================================
+                SAVE DATA
+                ====================================
+                */
+
+                try {
+
+                    setIsSaving(true);
+
+                    const payload = {
+                        currentQuestion,
+                        currentAnswer,
+                        userAnswer: finalAnswer,
+                        email:
+                            user?.primaryEmailAddress?.emailAddress,
+                    };
+
+                    console.log(payload);
+
+                    const res = await axios.post(
+                        `${process.env.NEXT_PUBLIC_SERVER_URL}/feedback/createFeedback`,
+                        payload
+                    );
+
+                    if (res.status === 200) {
+
+                        toast.success(
+                            "Your answer recorded successfully"
+                        );
+
+                        console.log(res.data);
+                    }
+
+                } catch (err) {
+
+                    console.log(err);
+
+                    toast.error(
+                        err?.response?.data?.message ||
+                        "Failed to save feedback"
+                    );
+
+                } finally {
+
+                    setIsSaving(false);
+                }
+
+            }, 1200);
+
+        }
+
+        /*
+        ====================================
+        START RECORDING
+        ====================================
+        */
+
+        else {
+
+            startSpeechToText();
+
+            toast.success("Recording started");
+        }
+    };
 
     return (
-        <div className='flex flex-col justify-center items-center'>
-            <div className=' rounded-lg bg-black my-10 flex flex-col justify-center items-center w-full'>
-                <Image src={webcamImg} width={200} height={200} alt='webcam' className='absolute' />
+        <div className="flex flex-col justify-center items-center">
+
+            {/* Webcam */}
+            <div className="rounded-lg bg-black my-10 flex flex-col justify-center items-center w-full relative overflow-hidden">
+
+                <Image
+                    src={webcamImg}
+                    width={200}
+                    height={200}
+                    alt="webcam"
+                    className="absolute"
+                />
+
                 <Webcam
                     mirrored={true}
                     style={{
                         height: 300,
                         width: "100%",
-                        zIndex: 10
+                        zIndex: 10,
                     }}
                 />
             </div>
+
+            {/* Record Button */}
             <Button
-                variant='outline'
+                variant="outline"
                 className="rounded-lg cursor-pointer"
                 onClick={handleSpeechToText}
+                disabled={isSaving}
             >
                 {
-                    isRecording ? <h2 className='flex items-center gap-1 text-red-600'><Mic /> Recording</h2> : <h2 className='text-purple-600'>Start Recording</h2>
+                    isRecording ? (
+                        <h2 className="flex items-center gap-1 text-red-600">
+                            <Mic />
+                            Recording...
+                        </h2>
+                    ) : (
+                        <h2 className="text-purple-600">
+                            {
+                                isSaving
+                                    ? "Saving..."
+                                    : "Start Recording"
+                            }
+                        </h2>
+                    )
                 }
             </Button>
-            <div className='mt-5'>
-                <Button onClick={() => setActiveIndex(activeIndex - 1)}>Previous Question</Button>
-                <Button onClick={() => setActiveIndex(activeIndex + 1)}> Next Question</Button>
-                <Button>End Interview</Button>
+
+            {/* Live Transcript */}
+            {
+                interimResult && (
+                    <p className="mt-4 text-sm text-gray-500">
+                        {interimResult}
+                    </p>
+                )
+            }
+
+            {/* Navigation */}
+            <div className="mt-5 flex items-center gap-3">
+
+                <Button
+                    disabled={activeIndex === 0}
+                    onClick={() =>
+                        setActiveIndex((prev) => prev - 1)
+                    }
+                >
+                    Previous Question
+                </Button>
+
+                <Button
+                    disabled={
+                        activeIndex ===
+                        mockInterviewQuestion.length - 1
+                    }
+                    onClick={() =>
+                        setActiveIndex((prev) => prev + 1)
+                    }
+                >
+                    Next Question
+                </Button>
+
+                <Button>
+                    End Interview
+                </Button>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default RecordAnswerSection
+export default RecordAnswerSection;
