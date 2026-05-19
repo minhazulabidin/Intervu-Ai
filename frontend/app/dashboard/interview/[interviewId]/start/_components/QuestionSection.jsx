@@ -7,7 +7,7 @@ const QuestionSection = ({ interviewData, activeIndex }) => {
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                 {
                     interviewData && interviewData.map((item, idx) => (
-                        <h2 className={` p-3 rounded-full text-xs md:text-sm text-center cursor-pointer ${activeIndex === idx ? "bg-black text-white" : "bg-secondary"}`}>Question #{idx + 1}</h2>
+                        <h2 key={idx} className={` p-3 rounded-full text-xs md:text-sm text-center cursor-pointer ${activeIndex === idx ? "bg-black text-white" : "bg-secondary"}`}>Question #{idx + 1}</h2>
                     ))
                 }
             </div>
