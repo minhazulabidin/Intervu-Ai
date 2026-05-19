@@ -33,7 +33,6 @@ const StartPage = () => {
         }
     }, [id]);
 
-    console.log(mockInterViewquestion, interviewData);
 
     return <main className="w-full max-w-7xl mx-auto">
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
