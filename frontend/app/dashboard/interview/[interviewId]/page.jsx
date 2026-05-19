@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { Lightbulb, WebcamIcon } from "lucide-react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Webcam from "react-webcam";
@@ -74,7 +75,9 @@ const InterviewId = () => {
         </div>
       </div>
       <div className="flex justify-end mt-5 ">
-        <Button className="bg-primary px-6 py-3 rounded-lg mt-3 text-white cursor-pointer hover:scale-102 active:scale-90 duration-200">Start</Button>
+        <Link href={`/dashboard/interview/${id}/start`}>
+          <Button className="bg-primary px-6 py-3 rounded-lg mt-3 text-white cursor-pointer hover:scale-102 active:scale-90 duration-200">Start Interview</Button>
+        </Link>
       </div>
     </div>
 
