@@ -43,7 +43,11 @@ const StartPage = () => {
             />
 
             {/* video / audio*/}
-            <RecordAnswerSection />
+            <RecordAnswerSection
+                interviewData={interviewData}
+                activeIndex={activeIndex}
+                setActiveIndex={setActiveIndex}
+            />
         </section>
     </main>;
 };

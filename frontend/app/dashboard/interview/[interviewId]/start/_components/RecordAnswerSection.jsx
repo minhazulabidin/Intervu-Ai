@@ -8,7 +8,7 @@ import useSpeechToText from 'react-hook-speech-to-text'
 import { Mic } from 'lucide-react'
 import { toast } from 'sonner'
 
-const RecordAnswerSection = () => {
+const RecordAnswerSection = ({ interviewData, activeIndex, setActiveIndex }) => {
     const [userAnswer, setUserAnswer] = useState('')
     const {
         error,
@@ -60,7 +60,11 @@ const RecordAnswerSection = () => {
                     isRecording ? <h2 className='flex items-center gap-1 text-red-600'><Mic /> Recording</h2> : <h2 className='text-purple-600'>Start Recording</h2>
                 }
             </Button>
-
+            <div className='mt-5'>
+                <Button onClick={() => setActiveIndex(activeIndex - 1)}>Previous Question</Button>
+                <Button onClick={() => setActiveIndex(activeIndex + 1)}> Next Question</Button>
+                <Button>End Interview</Button>
+            </div>
         </div>
     )
 }
