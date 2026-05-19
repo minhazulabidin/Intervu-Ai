@@ -8,8 +8,10 @@ import useSpeechToText from 'react-hook-speech-to-text'
 import { Mic } from 'lucide-react'
 import { toast } from 'sonner'
 
-const RecordAnswerSection = ({ interviewData, activeIndex, setActiveIndex }) => {
+const RecordAnswerSection = ({ mockInterviewQuestion, activeIndex, setActiveIndex }) => {
     const [userAnswer, setUserAnswer] = useState('')
+    const currentQuestion = mockInterviewQuestion[activeIndex]?.question;
+    const currentAnswer = mockInterviewQuestion[activeIndex]?.answer;
     const {
         error,
         interimResult,
@@ -21,6 +23,8 @@ const RecordAnswerSection = ({ interviewData, activeIndex, setActiveIndex }) => 
         continuous: true,
         useLegacyResults: false
     });
+    
+    
 
     useEffect(() => {
         results && results.map(result => setUserAnswer(prev => prev + result.transcript))
@@ -33,6 +37,8 @@ const RecordAnswerSection = ({ interviewData, activeIndex, setActiveIndex }) => 
                 toast("Error while saving your answer, Please record again")
                 return;
             }
+
+            const feedbackPrompt = `Question:${currentQuestion}, User Answer:${userAnswer}, Correct Answer:${currentAnswer}. Depend on question and user answer for give interview question. Please give us rating for answer nad feedback as area of improvement if any in just 3 to 5 lines to improve it in JSON format with rating field and feedback field.`;
         } else {
             startSpeechToText()
         }
@@ -41,12 +47,12 @@ const RecordAnswerSection = ({ interviewData, activeIndex, setActiveIndex }) => 
     return (
         <div className='flex flex-col justify-center items-center'>
             <div className=' rounded-lg bg-black my-10 flex flex-col justify-center items-center w-full'>
-                <Image src={webcamImg} weidth={200} height={200} alt='webcam' className='absolute' />
+                <Image src={webcamImg} width={200} height={200} alt='webcam' className='absolute' />
                 <Webcam
                     mirrored={true}
                     style={{
                         height: 300,
-                        weidth: "100%",
+                        width: "100%",
                         zIndex: 10
                     }}
                 />

@@ -112,7 +112,7 @@ const AddNewQues = () => {
                 >
                   Cancel
                 </Button>
-                <Button type="submit">
+                <Button type="submit" disabled={loading}>
                   {loading ? "Loading..." : "Start Interview"}
                 </Button>
               </div>

@@ -8,7 +8,7 @@ import RecordAnswerSection from "./_components/RecordAnswerSection";
 
 const StartPage = () => {
     const [interviewData, setInterviewData] = useState([]);
-    const [mockInterViewquestion, setMockInterviewQuestion] = useState([]);
+    const [mockInterviewQuestion, setMockInterviewQuestion] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
 
     const params = useParams();
@@ -21,8 +21,8 @@ const StartPage = () => {
                     `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`
                 );
 
-                setMockInterviewQuestion(response?.data?.data);
-                setInterviewData(response?.data?.data?.qaList);
+                setInterviewData(response?.data?.data);
+                setMockInterviewQuestion(response?.data?.data?.qaList);
             } catch (error) {
                 console.log(error);
             }
@@ -38,13 +38,13 @@ const StartPage = () => {
         <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* questions*/}
             <QuestionSection
-                interviewData={interviewData}
+                mockInterviewQuestion={mockInterviewQuestion}
                 activeIndex={activeIndex}
             />
 
             {/* video / audio*/}
             <RecordAnswerSection
-                interviewData={interviewData}
+                mockInterviewQuestion={mockInterviewQuestion}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
             />
