@@ -19,11 +19,10 @@ const RecordAnswerSection = ({
 
     const [isSaving, setIsSaving] = useState(false);
 
-    const currentQuestion =
-        mockInterviewQuestion?.[activeIndex]?.question;
+    const currentQuestion = mockInterviewQuestion?.[activeIndex]?.question;
 
-    const currentAnswer =
-        mockInterviewQuestion?.[activeIndex]?.answer;
+    const currentAnswer = mockInterviewQuestion?.[activeIndex]?.answer;
+    const [userAnswer, setUserAnswer] = useState("");
 
     const { user, isLoaded } = useUser();
 
@@ -32,31 +31,21 @@ const RecordAnswerSection = ({
         interimResult,
         isRecording,
         results,
+        setResults,
         startSpeechToText,
         stopSpeechToText,
     } = useSpeechToText({
         continuous: true,
         useLegacyResults: false,
     });
-
-    /*
-    ====================================
-    FINAL USER ANSWER
-    ====================================
-    */
-
-    const finalAnswer = useMemo(() => {
-        return results
+    useEffect(() => {
+        const finalTranscript = results
             .map((result) => result.transcript)
             .join(" ")
             .trim();
-    }, [results]);
 
-    /*
-    ====================================
-    SPEECH ERROR
-    ====================================
-    */
+        setUserAnswer(finalTranscript);
+    }, [results]);
 
     useEffect(() => {
         if (error) {
@@ -65,19 +54,7 @@ const RecordAnswerSection = ({
         }
     }, [error]);
 
-    /*
-    ====================================
-    START / STOP RECORDING
-    ====================================
-    */
-
     const handleSpeechToText = async () => {
-
-        /*
-        ====================================
-        STOP RECORDING
-        ====================================
-        */
 
         if (isRecording) {
 
@@ -85,13 +62,8 @@ const RecordAnswerSection = ({
 
             setTimeout(async () => {
 
-                /*
-                ====================================
-                VALIDATION
-                ====================================
-                */
 
-                if (!finalAnswer || finalAnswer.length < 10) {
+                if (!userAnswer || userAnswer.length < 10) {
                     toast.error(
                         "Answer is too short. Please record again."
                     );
@@ -103,12 +75,6 @@ const RecordAnswerSection = ({
                     return;
                 }
 
-                /*
-                ====================================
-                SAVE DATA
-                ====================================
-                */
-
                 try {
 
                     setIsSaving(true);
@@ -116,25 +82,16 @@ const RecordAnswerSection = ({
                     const payload = {
                         currentQuestion,
                         currentAnswer,
-                        userAnswer: finalAnswer,
-                        email:
-                            user?.primaryEmailAddress?.emailAddress,
+                        userAnswer,
+                        email: user?.primaryEmailAddress?.emailAddress,
                     };
 
-                    console.log(payload);
-
-                    const res = await axios.post(
-                        `${process.env.NEXT_PUBLIC_SERVER_URL}/feedback/createFeedback`,
-                        payload
-                    );
+                    const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/feedback/createFeedback`, payload);
 
                     if (res.status === 200) {
 
-                        toast.success(
-                            "Your answer recorded successfully"
-                        );
-
-                        console.log(res.data);
+                        toast.success("Your answer recorded successfully");
+                        console.log(res?.data?.data);
                     }
 
                 } catch (err) {
@@ -153,15 +110,10 @@ const RecordAnswerSection = ({
 
             }, 1200);
 
-        }
+        } else {
 
-        /*
-        ====================================
-        START RECORDING
-        ====================================
-        */
-
-        else {
+            setUserAnswer("");
+            setResults([]);
 
             startSpeechToText();
 
@@ -172,7 +124,6 @@ const RecordAnswerSection = ({
     return (
         <div className="flex flex-col justify-center items-center">
 
-            {/* Webcam */}
             <div className="rounded-lg bg-black my-10 flex flex-col justify-center items-center w-full relative overflow-hidden">
 
                 <Image
@@ -193,7 +144,6 @@ const RecordAnswerSection = ({
                 />
             </div>
 
-            {/* Record Button */}
             <Button
                 variant="outline"
                 className="rounded-lg cursor-pointer"
@@ -218,7 +168,6 @@ const RecordAnswerSection = ({
                 }
             </Button>
 
-            {/* Live Transcript */}
             {
                 interimResult && (
                     <p className="mt-4 text-sm text-gray-500">
@@ -227,7 +176,6 @@ const RecordAnswerSection = ({
                 )
             }
 
-            {/* Navigation */}
             <div className="mt-5 flex items-center gap-3">
 
                 <Button
