@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import NavbarDemo from "@/components/resizable-navbar-demo";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en" className={`${outfit.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col font-outfit">
+          <NavbarDemo/>
           <Toaster />
           {children}
         </body>
