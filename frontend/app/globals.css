@@ -139,3 +139,34 @@
 body {
   font-family: var(--font-outfit);
 }
+@keyframes slideDown {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+
+  to {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+    opacity: 1;
+  }
+
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-slideUp {
+  animation: slideUp 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
