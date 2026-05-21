@@ -41,14 +41,14 @@ const InterviewList = () => {
 
     return (
         <div>
-            <h1>Previous Mock Interview</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg-grid-cols-3 gap-4">
-              {
-                allMocks && allMocks.map(mock => (
-                    <MockCard key={mock._id} mock={mock} />
-                ))
-            }
-          </div>
+            <h2 className="font-bold text-xl mb-3">Previous Mock Interview</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {
+                    allMocks && allMocks.map(mock => (
+                        <MockCard key={mock._id} mock={mock} />
+                    ))
+                }
+            </div>
         </div>
     )
 }

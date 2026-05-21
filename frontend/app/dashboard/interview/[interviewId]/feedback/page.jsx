@@ -13,6 +13,7 @@ import axios from 'axios';
 
 const FeedbackPage = () => {
     const [feedBacks, setFeedbacks] = useState([]);
+    const [loading, setLoading] = useState(true);
     const params = useParams();
     const id = params?.interviewId;
     const router = useRouter()
@@ -25,6 +26,7 @@ const FeedbackPage = () => {
         if (!feedBacks.length) {
             fetchData()
         }
+        setLoading(false)
     }, [])
 
     const overallRating = feedBacks.map(feedback => feedback.rating).reduce((a, b) => a + b, 0)
@@ -35,12 +37,12 @@ const FeedbackPage = () => {
                 <div className="space-y-3">
                     <h2 className="text-green-400 font-bold lg:text-3xl md:text-2xl text-xl">Congratulations!</h2>
                     <h3 className="text-black font-bold lg:text-2xl md:text-xl text-lg">Here is your interview feedback.</h3>
-                    <h4 className={`lg:text-xl md:text-lg text-md ${overallRating > 0 && overallRating < 5 ? "text-red-500" : overallRating >= 5 && overallRating < 8 ? "text-yellow-500" : "text-green-500"}`}>Your overall interview rating is {overallRating}/10</h4>
+                    <h4 className={`lg:text-xl md:text-lg text-md ${overallRating >= 0 && overallRating < 5 ? "text-red-500" : overallRating >= 5 && overallRating < 8 ? "text-yellow-500" : "text-green-500"}`}>Your overall interview rating is {overallRating}/10</h4>
                     <p className='text-sm'>Find below interview question with correct answer, Your answer and feedback for improvement</p>
                 </div>
 
                 <div>
-                    {
+                    {feedBacks.length === 0 ? <h3 className='text-xl font-bold  text-center md:my-25 my-20'>No feedbacks found</h3> :
                         feedBacks.map(feedback => (
                             <Card className="mx-auto w-full my-5 px-2" key={feedback._id}>
                                 <CardContent>

@@ -11,6 +11,7 @@ import Webcam from "react-webcam";
 const InterviewId = () => {
   const [question, setQuestion] = useState([]);
   const [enableWebCam, setEnableWebCam] = useState(false);
+  const [loading, setLoading] = useState(true)
 
   const params = useParams();
   const id = params?.interviewId;
@@ -18,6 +19,7 @@ const InterviewId = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        console.log(id)
         const response = await axios.get(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`
         );
@@ -25,10 +27,12 @@ const InterviewId = () => {
         setQuestion(response?.data?.data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false)
       }
     };
 
-    if (id) {
+    if (question.length === 0) {
       fetchData();
     }
   }, [id]);

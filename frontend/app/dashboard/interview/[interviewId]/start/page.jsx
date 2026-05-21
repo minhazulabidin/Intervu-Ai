@@ -7,9 +7,9 @@ import QuestionSection from "./_components/QuestionSection";
 import RecordAnswerSection from "./_components/RecordAnswerSection";
 
 const StartPage = () => {
-    const [interviewData, setInterviewData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [mockInterviewQuestion, setMockInterviewQuestion] = useState([]);
-    const [activeIndex, setActiveIndex] = useState(5);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const params = useParams();
     const id = params?.interviewId;
@@ -20,11 +20,11 @@ const StartPage = () => {
                 const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`
                 );
-
-                setInterviewData(response?.data?.data);
                 setMockInterviewQuestion(response?.data?.data?.qaList);
             } catch (error) {
                 console.log(error);
+            }finally{
+                setLoading(false)
             }
         };
 
