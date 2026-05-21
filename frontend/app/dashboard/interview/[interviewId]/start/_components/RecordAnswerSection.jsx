@@ -92,6 +92,7 @@ const RecordAnswerSection = ({
 
                         toast.success("Your answer recorded successfully");
                         setUserAnswer("");
+                        setActiveIndex(activeIndex + 1);
                         console.log(res?.data?.data);
                     }
 
@@ -145,30 +146,39 @@ const RecordAnswerSection = ({
                     }}
                 />
             </div>
+            {
+                activeIndex === mockInterviewQuestion.length ? (
+                    <Button
 
-            <Button
-                variant="outline"
-                className="rounded-lg cursor-pointer"
-                onClick={handleSpeechToText}
-                disabled={isSaving}
-            >
-                {
-                    isRecording ? (
-                        <h2 className="flex items-center gap-1 text-red-600">
-                            <Mic />
-                            Recording...
-                        </h2>
-                    ) : (
-                        <h2 className="text-purple-600">
-                            {
-                                isSaving
-                                    ? "Saving..."
-                                    : "Start Recording"
-                            }
-                        </h2>
-                    )
-                }
-            </Button>
+                    >
+                        End Interview
+                    </Button>
+                ) :
+                    <Button
+                        variant="outline"
+                        className="rounded-lg cursor-pointer"
+                        onClick={handleSpeechToText}
+                        disabled={isSaving}
+                    >
+                        {
+                            isRecording ? (
+                                <h2 className="flex items-center gap-1 text-red-600">
+                                    <Mic />
+                                    Recording...
+                                </h2>
+                            ) : (
+                                <h2 className="text-purple-600">
+                                    {
+                                        isSaving
+                                            ? "Saving..."
+                                            : "Start Recording"
+                                    }
+                                </h2>
+                            )
+                        }
+                    </Button>
+            }
+
 
             {
                 interimResult && (
@@ -177,34 +187,6 @@ const RecordAnswerSection = ({
                     </p>
                 )
             }
-
-            <div className="mt-5 flex items-center gap-3">
-
-                <Button
-                    disabled={activeIndex === 0}
-                    onClick={() =>
-                        setActiveIndex((prev) => prev - 1)
-                    }
-                >
-                    Previous Question
-                </Button>
-
-                <Button
-                    disabled={
-                        activeIndex ===
-                        mockInterviewQuestion.length - 1
-                    }
-                    onClick={() =>
-                        setActiveIndex((prev) => prev + 1)
-                    }
-                >
-                    Next Question
-                </Button>
-
-                <Button>
-                    End Interview
-                </Button>
-            </div>
         </div>
     );
 };
