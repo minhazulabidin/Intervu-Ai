@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button';
 import {
     Collapsible,
@@ -12,19 +12,19 @@ import { useParams } from 'next/navigation';
 import axios from 'axios';
 
 const FeedbackPage = () => {
-    const [feedBacks,setFeedbacks] = useState([]);
+    const [feedBacks, setFeedbacks] = useState([]);
     const params = useParams();
     const id = params?.interviewId;
-console.log(feedBacks)
-    useEffect(()=>{
-        const fetchData =async()=>{
+    console.log(feedBacks)
+    useEffect(() => {
+        const fetchData = async () => {
             const res = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`);
             setFeedbacks(res?.data?.data?.feedback)
         }
-        if(!feedBacks.length){
+        if (!feedBacks.length) {
             fetchData()
         }
-    },[])
+    }, [])
 
     return (
         <main>
@@ -37,21 +37,27 @@ console.log(feedBacks)
                 </div>
 
                 <div>
-                    <Card className="mx-auto w-full">
-                        <CardContent>
-                            <Collapsible className="rounded-md data-open:bg-muted">
-                                <CollapsibleTrigger render={<Button variant="ghost" className="w-full">Product details
-                                    <ChevronDownIcon className="ml-auto group-data-panel-open/button:rotate-180" /></Button>} />
-                                <CollapsibleContent className="flex flex-col items-start gap-2 p-2.5 pt-0 text-sm">
-                                    <div>
-                                        This panel can be expanded or collapsed to reveal additional
-                                        content.
-                                    </div>
-                                    <Button size="xs">Learn More</Button>
-                                </CollapsibleContent>
-                            </Collapsible>
-                        </CardContent>
-                    </Card>
+                    {
+                        feedBacks.map(feedback => (
+                            <Card className="mx-auto w-full my-5" key={feedback._id}>
+                                <CardContent>
+                                    <Collapsible className="rounded-md data-open:bg-muted">
+                                        <CollapsibleTrigger render={<Button variant="ghost" className="w-full cursor-pointer">
+                                            {feedback?.currentQuestion}
+                                            <ChevronDownIcon className="ml-auto group-data-panel-open/button:rotate-180" /></Button>} />
+                                        <CollapsibleContent className="flex flex-col items-start gap-2 p-2.5 pt-0 text-sm">
+                                            <div className='space-y-2 mt-3'>
+                                                <h3 className="text-red-500 font-bold text-base border p-3 rounded-lg bg-white">Rating: {feedback?.rating}</h3>
+                                                <p className="text-red-600 text-base border p-3 rounded-lg bg-red-100"><span className="font-bold text-red-800">Your Answer:  </span>{feedback?.userAnswer}</p>
+                                                <p className="text-green-600 text-base border p-3 rounded-lg bg-green-200"><span className="font-bold text-green-800">Correct Answer: </span>{feedback?.currentAnswer}</p>
+                                                <p className="text-blue-600 text-base border p-3 rounded-lg bg-blue-200"><span className="font-bold text-blue-800">Feedback: </span>{feedback?.feedback}</p>
+                                            </div>
+                                        </CollapsibleContent>
+                                    </Collapsible>
+                                </CardContent>
+                            </Card>
+                        ))
+                    }
                 </div>
             </section>
         </main>
