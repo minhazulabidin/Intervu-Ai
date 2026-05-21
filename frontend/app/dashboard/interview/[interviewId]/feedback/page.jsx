@@ -118,12 +118,11 @@ const FeedbackPage = () => {
                             <div>
                                 {
                                     feedBacks.map(feedback => (
-                                        <Card className="mx-auto w-full my-5 px-2" key={feedback._id}>
+                                        <Card className="mx-auto w-full my-5" key={feedback._id}>
                                             <CardContent>
                                                 <Collapsible className="rounded-md data-open:bg-muted">
-
                                                     <CollapsibleTrigger
-                                                        className="wrap"
+                                                        className="wrap overflow-hidden"
                                                         render={
                                                             <Button
                                                                 variant="ghost"
@@ -135,7 +134,7 @@ const FeedbackPage = () => {
                                                         }
                                                     />
 
-                                                    <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down ">
+                                                    <CollapsibleContent className=" overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down ">
 
                                                         <div className="flex flex-col items-start gap-2 p-2.5 pt-0 text-sm">
 

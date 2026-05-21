@@ -12,9 +12,7 @@ const QuestionSection = ({ mockInterviewQuestion, activeIndex, loading }) => {
         }
     }
 
-    // =========================
     // LOADING SKELETON
-    // =========================
     if (loading) {
         return (
             <div className='p-5 rounded-lg border my-10 animate-pulse'>
@@ -55,7 +53,7 @@ const QuestionSection = ({ mockInterviewQuestion, activeIndex, loading }) => {
 
     return (
         mockInterviewQuestion && (
-            <div className='p-5 rounded-lg border my-10'>
+            <div className='p-5 rounded-lg border my-10 order-2 md:order-1'>
 
                 <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
                     {
@@ -82,7 +80,7 @@ const QuestionSection = ({ mockInterviewQuestion, activeIndex, loading }) => {
                     }
                 />
 
-                <div className='border border-purple-600 p-4 rounded-lg bg-purple-400/40 space-y-3 text-sm text-purple-900 mt-20'>
+                <div className='border border-purple-600 p-4 rounded-lg bg-purple-400/40 space-y-3 text-sm text-purple-900 md:mt-20 mt-8'>
 
                     <h2 className='flex items-center gap-1'>
                         <Lightbulb />

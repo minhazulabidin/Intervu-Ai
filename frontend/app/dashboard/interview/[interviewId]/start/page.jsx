@@ -35,7 +35,7 @@ const StartPage = () => {
 
 
     return <main className="w-full max-w-7xl mx-auto">
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-5 px-2">
             {/* questions*/}
             <QuestionSection
                 mockInterviewQuestion={mockInterviewQuestion}

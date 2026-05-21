@@ -123,7 +123,7 @@ const RecordAnswerSection = ({
     };
 
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center order-1 md:order-2">
 
             <div className="rounded-lg bg-black my-10 flex flex-col justify-center items-center w-full relative overflow-hidden">
 

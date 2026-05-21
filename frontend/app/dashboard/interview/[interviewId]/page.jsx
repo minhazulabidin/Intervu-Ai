@@ -93,8 +93,8 @@ const InterviewId = () => {
         </div>
 
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
-          <div>
-            <div className="border px-5 py-3 space-y-3 rounded-lg">
+          <div className="md:order-1 order-2">
+            <div className="border px-5 py-3 space-y-3 rounded-lg ">
               <h2>Job Position: {question?.jobPosition}</h2>
               <h2>Tech Stack: {question?.jobDescription}</h2>
               <h2>Experience: {question?.jobExperience} Years</h2>
@@ -110,7 +110,7 @@ const InterviewId = () => {
             </div>
           </div>
 
-          <div className="flex justify-center h-auto">
+          <div className="flex justify-center h-auto md:order-2 order-1">
             {enableWebCam ? (
               <Webcam
                 onUserMedia={() => setEnableWebCam(true)}
