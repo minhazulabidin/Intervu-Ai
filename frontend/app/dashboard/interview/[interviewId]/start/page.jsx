@@ -9,7 +9,7 @@ import RecordAnswerSection from "./_components/RecordAnswerSection";
 const StartPage = () => {
     const [interviewData, setInterviewData] = useState([]);
     const [mockInterviewQuestion, setMockInterviewQuestion] = useState([]);
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(5);
 
     const params = useParams();
     const id = params?.interviewId;
@@ -47,6 +47,7 @@ const StartPage = () => {
                 mockInterviewQuestion={mockInterviewQuestion}
                 activeIndex={activeIndex}
                 setActiveIndex={setActiveIndex}
+                id={id}
             />
         </section>
     </main>;

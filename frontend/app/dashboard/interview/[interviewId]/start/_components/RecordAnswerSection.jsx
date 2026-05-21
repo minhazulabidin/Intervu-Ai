@@ -10,11 +10,13 @@ import { Mic } from "lucide-react";
 import { toast } from "sonner";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 const RecordAnswerSection = ({
     mockInterviewQuestion,
     activeIndex,
     setActiveIndex,
+    id
 }) => {
     const [isSaving, setIsSaving] = useState(false);
     const currentQuestion = mockInterviewQuestion?.[activeIndex]?.question;
@@ -147,12 +149,13 @@ const RecordAnswerSection = ({
                 />
             </div>
             {
-                activeIndex === mockInterviewQuestion.length ? (
-                    <Button
+                activeIndex > mockInterviewQuestion.length - 1 ? (
+                    <Link href={`/dashboard/interview/${id}/feedback`}>
+                        <Button className="cursor-pointer">
+                            End Interview
+                        </Button>
+                    </Link>
 
-                    >
-                        End Interview
-                    </Button>
                 ) :
                     <Button
                         variant="outline"
