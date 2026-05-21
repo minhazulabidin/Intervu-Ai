@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Webcam from "react-webcam";
 import webcamImg from "../../../../../../public/webcam.png";
 import { Button } from "@/components/ui/button";
@@ -16,15 +16,17 @@ const RecordAnswerSection = ({
     mockInterviewQuestion,
     activeIndex,
     setActiveIndex,
-    id
+    id,
+    loading
 }) => {
+
     const [isSaving, setIsSaving] = useState(false);
+    const [userAnswer, setUserAnswer] = useState("");
+
     const currentQuestion = mockInterviewQuestion?.[activeIndex]?.question;
     const currentAnswer = mockInterviewQuestion?.[activeIndex]?.answer;
-    const [userAnswer, setUserAnswer] = useState("");
-    // const mockQuesId = mockInterviewQuestion?.[activeIndex]?._id
 
-    const { user, isLoaded } = useUser();
+    const { user } = useUser();
 
     const {
         error,
@@ -39,7 +41,6 @@ const RecordAnswerSection = ({
         useLegacyResults: false,
     });
 
-
     useEffect(() => {
         const finalTranscript = results
             .map((result) => result.transcript)
@@ -52,76 +53,71 @@ const RecordAnswerSection = ({
     useEffect(() => {
         if (error) {
             toast.error("Speech recognition error");
-            console.log(error);
         }
     }, [error]);
+
+    // LOADING SKELETON
+    if (loading) {
+        return (
+            <div className="flex flex-col justify-center items-center animate-pulse">
+                {/* Webcam skeleton */}
+                <div className="rounded-lg bg-gray-200 my-10 w-full h-75" />
+                {/* Button skeleton */}
+                <div className="h-10 w-40 bg-gray-200 rounded-lg" />
+                {/* Text skeleton */}
+                <div className="mt-4 space-y-2 w-full flex flex-col items-center">
+                    <div className="h-3 w-1/2 bg-gray-200 rounded"></div>
+                    <div className="h-3 w-1/3 bg-gray-200 rounded"></div>
+                </div>
+
+            </div>
+        );
+    }
 
     const handleSpeechToText = async () => {
 
         if (isRecording) {
-
             stopSpeechToText();
-
             setTimeout(async () => {
-
-
                 if (!userAnswer || userAnswer.length < 10) {
-                    toast.error(
-                        "Answer is too short. Please record again."
-                    );
+                    toast.error("Answer is too short. Please record again.");
                     return;
                 }
-
                 if (!user?.primaryEmailAddress?.emailAddress) {
                     toast.error("User email not found");
                     return;
                 }
-
                 try {
-
                     setIsSaving(true);
-
                     const payload = {
                         currentQuestion,
                         currentAnswer,
                         userAnswer,
                         email: user?.primaryEmailAddress?.emailAddress,
                     };
-
-                    const res = await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/feedback/createFeedback`, payload);
-
+                    const res = await axios.post(
+                        `${process.env.NEXT_PUBLIC_SERVER_URL}/feedback/createFeedback`,
+                        payload
+                    );
                     if (res.status === 200) {
-
                         toast.success("Your answer recorded successfully");
                         setUserAnswer("");
                         setActiveIndex(activeIndex + 1);
-                        console.log(res?.data?.data);
                     }
-
                 } catch (err) {
-
-                    console.log(err);
-
                     toast.error(
                         err?.response?.data?.message ||
                         "Failed to save feedback"
                     );
                     setUserAnswer("");
-
                 } finally {
-
                     setIsSaving(false);
                 }
-
             }, 1200);
-
         } else {
-
             setUserAnswer("");
             setResults([]);
-
             startSpeechToText();
-
             toast.success("Recording started");
         }
     };
@@ -148,6 +144,7 @@ const RecordAnswerSection = ({
                     }}
                 />
             </div>
+
             {
                 activeIndex > mockInterviewQuestion.length - 1 ? (
                     <Link href={`/dashboard/interview/${id}/feedback`}>
@@ -156,7 +153,7 @@ const RecordAnswerSection = ({
                         </Button>
                     </Link>
 
-                ) :
+                ) : (
                     <Button
                         variant="outline"
                         className="rounded-lg cursor-pointer"
@@ -171,17 +168,13 @@ const RecordAnswerSection = ({
                                 </h2>
                             ) : (
                                 <h2 className="text-purple-600">
-                                    {
-                                        isSaving
-                                            ? "Saving..."
-                                            : "Start Recording"
-                                    }
+                                    {isSaving ? "Saving..." : "Start Recording"}
                                 </h2>
                             )
                         }
                     </Button>
+                )
             }
-
 
             {
                 interimResult && (
@@ -190,6 +183,7 @@ const RecordAnswerSection = ({
                     </p>
                 )
             }
+
         </div>
     );
 };
