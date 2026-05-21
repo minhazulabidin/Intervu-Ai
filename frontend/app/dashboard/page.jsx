@@ -99,31 +99,21 @@ const DashBoard = () => {
                     </div>
                   ))
                 }
-
               </div>
-
             </div>
-
           </div>
-
           :
-
           <>
-
             <h2 className='text-2xl font-bold'>
               Dashboard
             </h2>
-
             <h2 className='text-gray-500'>
               Create and start you Ai Mockup
             </h2>
-
             <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
               <AddNewQues />
             </div>
-
             <InterviewList />
-
           </>
       }
 
