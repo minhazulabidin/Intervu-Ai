@@ -23,7 +23,16 @@ const questionSchema = new mongoose.Schema({
             question: String,
             answer: String
         }
-    ]
+    ],
+    feedback: {
+        type: [
+            {
+                type: mongoose.Types.ObjectId,
+                ref: "Feedback",
+            },
+        ],
+        default: [],
+    }
 }, {
     timestamps: true
 })

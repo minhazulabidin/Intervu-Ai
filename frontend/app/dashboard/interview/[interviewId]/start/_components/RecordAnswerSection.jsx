@@ -16,13 +16,11 @@ const RecordAnswerSection = ({
     activeIndex,
     setActiveIndex,
 }) => {
-
     const [isSaving, setIsSaving] = useState(false);
-
     const currentQuestion = mockInterviewQuestion?.[activeIndex]?.question;
-
     const currentAnswer = mockInterviewQuestion?.[activeIndex]?.answer;
     const [userAnswer, setUserAnswer] = useState("");
+    // const mockQuesId = mockInterviewQuestion?.[activeIndex]?._id
 
     const { user, isLoaded } = useUser();
 
@@ -38,6 +36,8 @@ const RecordAnswerSection = ({
         continuous: true,
         useLegacyResults: false,
     });
+
+
     useEffect(() => {
         const finalTranscript = results
             .map((result) => result.transcript)
@@ -91,6 +91,7 @@ const RecordAnswerSection = ({
                     if (res.status === 200) {
 
                         toast.success("Your answer recorded successfully");
+                        setUserAnswer("");
                         console.log(res?.data?.data);
                     }
 
@@ -102,6 +103,7 @@ const RecordAnswerSection = ({
                         err?.response?.data?.message ||
                         "Failed to save feedback"
                     );
+                    setUserAnswer("");
 
                 } finally {
 
