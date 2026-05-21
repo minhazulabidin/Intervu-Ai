@@ -31,7 +31,7 @@ const FeedbackPage = () => {
 
     return (
         <main>
-            <section className="w-full max-w-7xl mx-auto">
+            <section className="w-full max-w-7xl mx-auto p-4">
                 <div className="space-y-3">
                     <h2 className="text-green-400 font-bold lg:text-3xl md:text-2xl text-xl">Congratulations!</h2>
                     <h3 className="text-black font-bold lg:text-2xl md:text-xl text-lg">Here is your interview feedback.</h3>
@@ -42,10 +42,10 @@ const FeedbackPage = () => {
                 <div>
                     {
                         feedBacks.map(feedback => (
-                            <Card className="mx-auto w-full my-5" key={feedback._id}>
+                            <Card className="mx-auto w-full my-5 px-2" key={feedback._id}>
                                 <CardContent>
                                     <Collapsible className="rounded-md data-open:bg-muted">
-                                        <CollapsibleTrigger render={<Button variant="ghost" className="w-full cursor-pointer">
+                                        <CollapsibleTrigger className="wrap" render={<Button variant="ghost" className="w-full cursor-pointer wrap text-left">
                                             {feedback?.currentQuestion}
                                             <ChevronDownIcon className="ml-auto group-data-panel-open/button:rotate-180" /></Button>} />
 
