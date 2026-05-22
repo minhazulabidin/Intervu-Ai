@@ -19,6 +19,7 @@ const DashBoard = () => {
   }, []);
 
   return (
+    
     <div className='max-w-full md:max-w-7xl mx-auto p-10'>
 
       {
