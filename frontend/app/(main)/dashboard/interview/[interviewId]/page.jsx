@@ -40,77 +40,114 @@ const InterviewId = () => {
 
   if (loading) {
     return (
-      <main>
-        <div className="w-full max-w-7xl mx-auto md:px-0 px-3">
+      <main className="relative text-white min-h-screen">
 
-          <div className="mt-10">
-            <div className="h-8 w-64 bg-gray-200 rounded mx-auto animate-pulse"></div>
-          </div>
+  <div className="w-full max-w-7xl mx-auto md:px-0 px-3 mt-20">
 
-          <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
+    {/* TITLE */}
+    <div>
+      <div className="h-8 w-64 bg-white/5 border border-white/10 rounded-lg mx-auto animate-pulse"></div>
+    </div>
 
-            {/* LEFT SKELETON */}
-            <div className="space-y-4">
+    <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
 
-              <div className="border px-5 py-6 space-y-3 rounded-lg animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                <div className="h-4 bg-gray-200 rounded w-2/3"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              </div>
+      {/* LEFT PANEL */}
+      <div className="md:order-1 order-2 space-y-5">
 
-              <div className="border p-5 rounded-lg border-yellow-300 bg-yellow-100 space-y-2 animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-1/3"></div>
-                <div className="h-3 bg-gray-200 rounded w-full"></div>
-                <div className="h-3 bg-gray-200 rounded w-5/6"></div>
-              </div>
+        {/* Job Info (same padding + border + radius) */}
+        <div className="px-5 py-3 space-y-3 rounded-lg border border-white/10 bg-white/5 animate-pulse">
+          <div className="h-4 bg-white/10 rounded w-3/4"></div>
+          <div className="h-4 bg-white/10 rounded w-2/3"></div>
+          <div className="h-4 bg-white/10 rounded w-1/2"></div>
+        </div>
 
-            </div>
+        {/* Information Box (same layout exactly) */}
+        <div className="p-5 rounded-lg border border-yellow-400/20 bg-yellow-500/10 space-y-2 animate-pulse">
 
-            {/* RIGHT SKELETON */}
-            <div className="flex justify-center">
-              <div className="w-75 h-75 bg-gray-200 rounded-lg animate-pulse"></div>
-            </div>
+          {/* header line */}
+          <div className="h-4 bg-yellow-200/20 rounded w-1/3"></div>
 
-          </div>
+          {/* paragraph lines (match real text flow) */}
+          <div className="h-3 bg-yellow-200/10 rounded w-full"></div>
+          <div className="h-3 bg-yellow-200/10 rounded w-11/12"></div>
+          <div className="h-3 bg-yellow-200/10 rounded w-5/6"></div>
 
-          {/* BUTTON SKELETON */}
-          <div className="flex justify-end mt-5">
-            <div className="h-10 w-40 bg-gray-200 rounded-lg animate-pulse"></div>
-          </div>
+          <div className="h-3 bg-yellow-200/10 rounded w-3/4"></div>
+        </div>
+
+      </div>
+
+      {/* RIGHT PANEL (IMPORTANT: match webcam area exactly) */}
+      <div className="flex justify-center md:order-2 order-1">
+
+        {/* webcam box exact replacement */}
+        <div className="w-full rounded-lg overflow-hidden border border-white/10 bg-white/5 animate-pulse">
+
+          {/* maintain aspect feel like webcam */}
+          <div className="w-full aspect-video bg-white/5"></div>
 
         </div>
-      </main>
+
+      </div>
+
+    </div>
+
+    {/* BUTTON AREA */}
+    <div className="flex justify-end mt-5">
+
+      <div className="h-10 w-40 bg-white/5 border border-white/10 rounded-lg animate-pulse"></div>
+
+    </div>
+
+  </div>
+</main>
     );
   }
 
   return (
-    <main>
-      <div className="w-full max-w-7xl mx-auto md:px-0 px-3">
-        <div className="mt-10">
-          <h2 className="font-bold text-2xl text-center uppercase">
+    <main className="relative text-white min-h-screen">
+
+      <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
+
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(236,72,153,0.08),transparent_30%)] pointer-events-none" />
+
+      {/* Noise Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none" />
+
+      <div className="relative w-full max-w-7xl mx-auto md:px-0 px-3 mt-20">
+
+        <div className="">
+          <h2 className="font-bold text-2xl text-center uppercase text-white/90 tracking-wide">
             Let's get start
           </h2>
         </div>
 
         <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
+
+          {/* LEFT PANEL */}
           <div className="md:order-1 order-2">
-            <div className="border px-5 py-3 space-y-3 rounded-lg ">
+
+            <div className="px-5 py-3 space-y-3 rounded-lg border border-white/10 bg-white/5 backdrop-blur-md text-white/80">
               <h2>Job Position: {question?.jobPosition}</h2>
               <h2>Tech Stack: {question?.jobDescription}</h2>
               <h2>Experience: {question?.jobExperience} Years</h2>
             </div>
 
-            <div className="border p-5 rounded-lg mt-5 border-yellow-300 bg-yellow-100 text-yellow-500 space-y-2">
-              <h2 className="flex item-center font-bold">
+            <div className="p-5 rounded-lg mt-5 border border-yellow-400/30 bg-yellow-500/10 text-yellow-200 space-y-2 backdrop-blur-md">
+              <h2 className="flex items-center font-bold gap-2 text-yellow-200">
                 <Lightbulb /> Information
               </h2>
-              <p>
-                Enable Video Web Cam and Microphone to Start your Al Generated Mock Interview, It Has 5 question which you can answer and at the last you will get the report on the basis of your answer. NOTE: We never record your video, Web cam access you can disable at any time if you want.
+              <p className="text-yellow-100/80">
+                Enable Video Web Cam and Microphone to Start your AI Generated Mock Interview, It Has 5 question which you can answer and at the last you will get the report on the basis of your answer. NOTE: We never record your video, Web cam access you can disable at any time if you want.
               </p>
             </div>
+
           </div>
 
+          {/* RIGHT PANEL */}
           <div className="flex justify-center h-auto md:order-2 order-1">
+
             {enableWebCam ? (
               <Webcam
                 onUserMedia={() => setEnableWebCam(true)}
@@ -121,33 +158,39 @@ const InterviewId = () => {
                   height: "100%",
                   borderRadius: "10px",
                   objectFit: "cover",
+                  border: "1px solid rgba(255,255,255,0.08)",
                 }}
               />
             ) : (
               <div className="flex flex-col w-full">
+
                 <WebcamIcon
-                  className="h-82 w-full bg-black text-gray-300 rounded-lg"
+                  className="h-82 w-full bg-white/5 text-white/30 rounded-lg border border-white/10"
                   size={80}
                 />
+
                 <Button
                   variant="ghost"
-                  className="px-6 py-3 rounded-lg mt-3 cursor-pointer"
+                  className="px-6 py-3 rounded-lg mt-3 cursor-pointer bg-white/5 text-white/80 border border-white/10 hover:bg-white/10 transition hover:text-neutral-50"
                   onClick={() => setEnableWebCam(true)}
                 >
                   Enable Webcam And Microphone
                 </Button>
+
               </div>
             )}
+
           </div>
         </div>
 
-        <div className="flex justify-end mt-5">
+        <div className="flex justify-end my-5">
           <Link href={`/dashboard/interview/${id}/start`}>
-            <Button className="bg-primary px-6 py-3 rounded-lg mt-3 text-white cursor-pointer hover:scale-102 active:scale-90 duration-200">
+            <Button className="bg-linear-to-r from-purple-500 to-pink-500 px-6 py-3 rounded-lg mt-3 text-white cursor-pointer hover:scale-105 active:scale-95 duration-200 shadow-lg shadow-pink-500/20 ">
               Start Interview
             </Button>
           </Link>
         </div>
+
       </div>
     </main>
   );
