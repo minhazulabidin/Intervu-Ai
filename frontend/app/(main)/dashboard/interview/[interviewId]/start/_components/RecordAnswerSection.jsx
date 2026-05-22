@@ -125,14 +125,15 @@ const RecordAnswerSection = ({
     return (
         <div className="flex flex-col justify-center items-center order-1 md:order-2">
 
-            <div className="rounded-lg bg-black my-10 flex flex-col justify-center items-center w-full relative overflow-hidden">
+            {/* WEBCAM CONTAINER */}
+            <div className="rounded-lg my-10 flex flex-col justify-center items-center w-full relative overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shadow-lg shadow-purple-500/10">
 
                 <Image
                     src={webcamImg}
                     width={200}
                     height={200}
                     alt="webcam"
-                    className="absolute"
+                    className="absolute opacity-40"
                 />
 
                 <Webcam
@@ -141,44 +142,54 @@ const RecordAnswerSection = ({
                         height: 300,
                         width: "100%",
                         zIndex: 10,
+                        borderRadius: "10px",
                     }}
                 />
+
+                {/* subtle glow overlay */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.08),transparent_60%)] pointer-events-none"></div>
+
             </div>
 
+            {/* BUTTON AREA */}
             {
                 activeIndex > mockInterviewQuestion.length - 1 ? (
+
                     <Link href={`/dashboard/interview/${id}/feedback`}>
-                        <Button className="cursor-pointer">
+                        <Button className="cursor-pointer bg-linear-to-r from-purple-500 to-pink-500 text-white shadow-md shadow-pink-500/20 hover:scale-105 active:scale-95 transition">
                             End Interview
                         </Button>
                     </Link>
 
                 ) : (
+
                     <Button
                         variant="outline"
-                        className="rounded-lg cursor-pointer"
+                        className={`rounded-lg cursor-pointer border border-white/10 bg-white/5  hover:bg-white/10 transition ${isRecording && "text-red-400"}`}
                         onClick={handleSpeechToText}
                         disabled={isSaving}
                     >
                         {
                             isRecording ? (
-                                <h2 className="flex items-center gap-1 text-red-600">
+                                <h2 className="flex items-center gap-1 text-red-400">
                                     <Mic />
                                     Recording...
                                 </h2>
                             ) : (
-                                <h2 className="text-purple-600">
+                                <h2 className="text-purple-300">
                                     {isSaving ? "Saving..." : "Start Recording"}
                                 </h2>
                             )
                         }
                     </Button>
+
                 )
             }
 
+            {/* INTERIM TEXT */}
             {
                 interimResult && (
-                    <p className="mt-4 text-sm text-gray-500">
+                    <p className="mt-4 text-sm text-white/60 italic">
                         {interimResult}
                     </p>
                 )

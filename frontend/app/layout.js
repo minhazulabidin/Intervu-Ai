@@ -2,7 +2,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import NavbarDemo from "@/components/resizable-navbar-demo";
 
 const outfit = Outfit({
   variable: "--font-outfit",
