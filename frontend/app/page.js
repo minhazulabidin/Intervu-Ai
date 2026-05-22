@@ -29,7 +29,7 @@ export default function Home() {
     <main className="relative overflow-hidden bg-black text-white">
       
       {/* Gradient Blur */}
-      <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-[350px] h-[350px] md:w-[700px] md:h-[700px] bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
+      <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20">
@@ -39,7 +39,7 @@ export default function Home() {
             <ShineText text="Your Personal AI Mock Interview Coach" />
           </div>
 
-          <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight">
+          <h1 className="mt-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
             Your Personal
             <span className="bg-linear-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               {" "}AI Mock Interview{" "}
@@ -47,7 +47,7 @@ export default function Home() {
             Coach
           </h1>
 
-          <p className="text-white/70 text-base sm:text-lg md:text-xl mt-6 max-w-2xl mx-auto leading-7 md:leading-8 px-2">
+          <p className="text-white/70 text-base md:text-md mt-4 max-w-2xl mx-auto leading-7 md:leading-8 px-2">
             Boost your interview confidence with realistic AI-powered mock
             interviews, instant feedback, and personalized improvement tips.
           </p>
@@ -79,14 +79,14 @@ export default function Home() {
             <ShineText text="How It Works" />
           </div>
 
-          <h2 className="mt-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+          <h2 className="mt-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
             Simple Process,
             <span className="bg-linear-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
               {" "}Powerful Results
             </span>
           </h2>
 
-          <p className="text-white/60 mt-6 text-base sm:text-lg max-w-2xl mx-auto leading-7 md:leading-8 px-2">
+          <p className="text-white/60 mt-4 text-base md:text-md max-w-2xl mx-auto leading-7 md:leading-8 px-2">
             Start practicing smarter with our AI interview platform in just
             three simple steps.
           </p>
@@ -128,9 +128,11 @@ export default function Home() {
 
           {/* CTA */}
           <div className="mt-16 md:mt-20">
-            <Button className="h-12 md:h-14 px-6 md:px-10 text-base md:text-lg rounded-xl bg-pink-600 hover:bg-pink-700 transition-all duration-300 hover:scale-105 shadow-lg shadow-pink-500/30">
+            <Link href="/dashboard" className="">
+            <Button className="h-12 md:h-14 px-6 md:px-10 text-base md:text-lg rounded-xl bg-pink-600 hover:bg-pink-700 transition-all cursor-pointer duration-300 hover:scale-105 shadow-lg shadow-pink-500/30">
               Start Your Mock Interview
             </Button>
+            </Link>
           </div>
         </div>
       </section>
