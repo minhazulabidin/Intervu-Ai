@@ -10,10 +10,12 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
+import useUserStore from "@/utils/zustandStore/userStore";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 export default function NavbarDemo() {
   const navItems = [
@@ -34,11 +36,12 @@ export default function NavbarDemo() {
       link: "/how-it-works",
     },
   ];
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const path = usePathname()
 
+
+  const {user} = useUserStore();
+  
   return (
     <div className="relative w-full">
       <Navbar>
@@ -47,8 +50,10 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-             <UserButton/>
-          </div>
+            {
+              user ? <UserButton /> : <Link href="/sign-in" className="z-50"><Button variant="outline" className="rounded-md border-gray-800/50  text-neutral-300 cursor-pointer hover:text-neutral-100">Sign In</Button></Link>
+            }
+       </div>
         </NavBody>
 
         {/* Mobile Navigation */}
@@ -66,12 +71,14 @@ export default function NavbarDemo() {
                 key={`mobile-link-${idx}`}
                 href={item.link}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`relative text-neutral-600 dark:text-neutral-300 ${path == item.link && "text-purple-700 font-bold"}`}>
+                className={`relative text-neutral-300 ${path == item.link && "text-purple-700 font-bold"}`}>
                 <span className="block">{item.name}</span>
               </Link>
             ))}
             <div className="flex w-full flex-col gap-4">
-              <UserButton/>
+              {
+                user ? <UserButton /> : <Button variant="outline" className="rounded">Sign In</Button>
+              }
             </div>
           </MobileNavMenu>
         </MobileNav>

@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en" className={`${outfit.variable} h-full antialiased`}>
         <body className="min-h-full flex flex-col font-outfit">
-          <NavbarDemo/>
           <Toaster />
           {children}
         </body>

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Brain, MessageSquareText, TrendingUp } from "lucide-react";
-import ShineText from "./_compo/ShineText";
 import Link from "next/link";
+import ShineText from "./_compo/ShineText";
 
 export default function Home() {
   const steps = [

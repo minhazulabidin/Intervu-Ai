@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Webcam from "react-webcam";
-import webcamImg from "../../../../../../public/webcam.png";
+import webcamImg from "../../../../../../../public/webcam.png";
 import { Button } from "@/components/ui/button";
 import useSpeechToText from "react-hook-speech-to-text";
 import { Mic } from "lucide-react";

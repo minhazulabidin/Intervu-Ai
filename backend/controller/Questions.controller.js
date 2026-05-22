@@ -119,15 +119,38 @@ Do not add explanation text.
 });
 
 exports.getQuestionController = asyncController(async (req, res) => {
-  const question = await questionsModel.find({});
 
-  apiResponse(res, 200, "Question found successfully", question);
+  const { email } = req.query;
+
+  // validation
+  if (!email) {
+    return apiResponse(res, 400, "Email is required");
+  }
+
+  // find user
+  const user = await userModel.findOne({ email });
+
+  if (!user) {
+    return apiResponse(res, 404, "User not found");
+  }
+
+  // find all questions of this user
+  const questions = await questionsModel
+    .find({ userId: user._id })
+    .populate("feedback")
+    .populate("userId")
+    .sort({ createdAt: -1 });
+
+  return apiResponse(
+    res,
+    200,
+    "Questions found successfully",
+    questions
+  );
 });
 
 exports.getSingleQuestionController = asyncController(async (req, res) => {
   const { id } = req.params;
-
-  const question = await questionsModel.findById(id);
-
+  const question = await questionsModel.findById(id).populate("feedback").populate("userId");
   apiResponse(res, 200, "Question found successfully", question);
 });
