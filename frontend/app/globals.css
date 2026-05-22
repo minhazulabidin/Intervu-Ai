@@ -154,3 +154,7 @@ body {
     left: 220%;
   }
 }
+
+.animate-shine {
+  animation: shine 4s ease-in-out infinite;
+}
