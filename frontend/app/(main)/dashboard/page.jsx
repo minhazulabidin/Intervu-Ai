@@ -29,11 +29,11 @@ const DashBoard = () => {
       {/* Noise Overlay */}
       <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none" />
 
-      <section className="max-w-full md:max-w-7xl mx-auto md:p-10  p-2">
+      <section className="max-w-full md:max-w-7xl mx-auto md:p-10 p-2">
         {
           loading
             ?
-            <div className="mt-10">
+            <div className="mt-20">
 
               {/* Heading Skeleton */}
 
@@ -84,11 +84,11 @@ const DashBoard = () => {
                           <div className='h-4 w-5/6 rounded-md bg-linear-to-r from-white/5 via-white/12 to-white/5'
                           ></div>
                         </div>
-                        <div className='flex justify-between items-center pt-4'>
+                        <div className='flex md:flex-row flex-col gap-3 justify-between items-center pt-4'>
                           <div
-                            className='h-9 w-24 rounded-xl border border-white/10 bg-linear-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10'
+                            className='md:h-9 h-5  w-full rounded-xl border border-white/10 bg-linear-to-r from-pink-500/10 via-purple-500/10 to-pink-500/10'
                           ></div>
-                          <div className=' h-9 w-20 rounded-xl border border-white/10 bg-white/6'
+                          <div className='md:h-9 h-5  w-full rounded-xl border border-white/10 bg-white/6'
                           ></div>
                         </div>
                       </div>
@@ -99,7 +99,7 @@ const DashBoard = () => {
             </div>
             :
             <>
-              <h2 className='text-2xl font-bold text-neutral-200 mt-10'>
+              <h2 className='text-2xl font-bold text-neutral-200 mt-20'>
                 Dashboard
               </h2>
               <h2 className='text-gray-500'>

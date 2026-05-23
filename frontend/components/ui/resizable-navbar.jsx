@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 
 export const Navbar = ({
@@ -102,13 +102,13 @@ export const NavItems = ({
         <Link
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className={`relative px-4 hover:text-purple-700 py-2 text-neutral-300 ${path === item?.link && "font-bold text-purple-700 rounded-full bg-neutral-800"}`}
+          className={`relative px-4 py-2 rounded-full text-neutral-300 transition-all duration-300 border border-transparent overflow-hidden ${path === item?.link ? "font-bold text-purple-300 bg-white/10 backdrop-blur-md border-purple-500/30 shadow-md shadow-purple-500/20 before:opacity-100" : "hover:text-purple-300 hover:bg-white/10 hover:backdrop-blur-md hover:border-white/10 hover:shadow-md hover:shadow-purple-500/10"}`}
           key={`link-${idx}`}
           href={item?.link}>
           {hovered === idx && (
             <motion.div
               layoutId="hovered"
-              className={`absolute inset-0 h-full w-full rounded-full bg-neutral-800 `} />
+              className={`absolute inset-0 h-full w-full rounded-full `} />
           )}
           <span className="relative z-20">{item.name}</span>
         </Link>
