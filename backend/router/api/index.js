@@ -5,5 +5,6 @@ router.use("/questions", require("./questions"));
 router.use("/user", require("./user"));
 router.use("/webhooks", require("./webhooks"));
 router.use("/feedback", require("./feedback"));
+router.use("/contact", require("./contact"));
 
 module.exports = router;
