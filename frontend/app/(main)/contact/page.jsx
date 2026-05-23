@@ -3,11 +3,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import useUserStore from "@/utils/zustandStore/userStore";
 
 export default function ContactPage() {
+    const { user } = useUserStore();
     const [formData, setFormData] = useState({
-        name: "",
-        email: "",
+        name: user?.fullName || "",
+        email: user?.email ||"",
         message: "",
     });
 
@@ -36,20 +38,21 @@ export default function ContactPage() {
                 message: "",
             });
         } catch (error) {
-            console.log(error.message)
             toast.error("Something went wrong");
         } finally {
             setLoading(false);
         }
     };
 
+    
+
     return (
-        <div className="min-h-screen bg-[#070B14] text-white px-4 md:px-8 py-16 relative overflow-hidden">
+        <div className="min-h-screen bg-black text-white px-4 md:px-8 py-16 relative overflow-hidden">
 
             {/* Background Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-pink-500/10 blur-[140px] rounded-full pointer-events-none" />
 
-            <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mt-20">
 
                 {/* Left Side */}
                 <div>
@@ -69,12 +72,6 @@ export default function ContactPage() {
                     </p>
 
                     <div className="mt-10 space-y-4">
-
-                        <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-5">
-                            <p className="text-white/40 text-sm mb-1">Email</p>
-                            <h3 className="font-medium text-lg">yourmail@gmail.com</h3>
-                        </div>
-
                         <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-5">
                             <p className="text-white/40 text-sm mb-1">Response Time</p>
                             <h3 className="font-medium text-lg">Within 24 Hours</h3>
@@ -107,8 +104,8 @@ export default function ContactPage() {
                                 <input
                                     type="text"
                                     name="name"
-                                    value={formData.name}
                                     onChange={handleChange}
+                                    defaultValue={user?.fullName}
                                     required
                                     placeholder="Enter your name"
                                     className="w-full rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl px-5 py-4 outline-none focus:border-pink-500/30 transition-all duration-300"
@@ -123,7 +120,7 @@ export default function ContactPage() {
                                 <input
                                     type="email"
                                     name="email"
-                                    value={formData.email}
+                                    defaultValue={user?.email}
                                     onChange={handleChange}
                                     required
                                     placeholder="Enter your email"

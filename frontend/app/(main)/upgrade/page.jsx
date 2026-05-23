@@ -1,3 +1,6 @@
+"use client";
+import { toast } from "sonner";
+
 export default function UpgradePage() {
   const plans = [
     {
@@ -5,10 +8,10 @@ export default function UpgradePage() {
       price: "$0",
       description: "Perfect for getting started with mock interviews.",
       features: [
-        "5 Mock Interviews",
-        "Basic Questions",
+        "3 Mock Interviews",
+        "Advanced Questions",
         "Community Support",
-        "Limited AI Feedback",
+        "AI Feedback",
       ],
       button: "Current Plan",
       active: false,
@@ -41,6 +44,13 @@ export default function UpgradePage() {
     },
   ];
 
+  const handleUpgrade = (name) => {
+    if (name === "Pro") {
+      toast.error("Currently unavailable")
+    } else {
+      toast.error("Currently unavailable")
+    }
+  }
   return (
     <main className="min-h-screen bg-black text-white px-4 md:px-8 py-16 overflow-hidden relative">
       {/* Background Glow */}
@@ -71,11 +81,10 @@ export default function UpgradePage() {
           {plans.map((plan, idx) => (
             <div
               key={idx}
-              className={`group relative isolate overflow-hidden rounded-3xl border backdrop-blur-2xl p-8 transition-all duration-500 hover:-translate-y-2 ${
-                plan.active
-                  ? "border-pink-500/30 bg-white/[0.07] shadow-[0_0_60px_rgba(236,72,153,0.12)]"
-                  : "border-white/10 bg-white/[0.03] hover:border-white/20"
-              }`}
+              className={`group relative isolate overflow-hidden rounded-3xl border backdrop-blur-2xl p-8 transition-all duration-500 hover:-translate-y-2 ${plan.active
+                ? "border-pink-500/30 bg-white/[0.07] shadow-[0_0_60px_rgba(236,72,153,0.12)]"
+                : "border-white/10 bg-white/[0.03] hover:border-white/20"
+                }`}
             >
               {/* Glow */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-pink-500/[0.08] via-purple-500/[0.04] to-transparent transition-all duration-700 pointer-events-none" />
@@ -126,11 +135,11 @@ export default function UpgradePage() {
                 </div>
 
                 <button
-                  className={`relative overflow-hidden rounded-2xl py-4 font-semibold transition-all duration-300 border ${
-                    plan.active
-                      ? "border-pink-500/30 bg-white/[0.08] hover:border-pink-500/50 shadow-[0_0_30px_rgba(236,72,153,0.10)]"
-                      : "border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20"
-                  }`}
+                  disabled={plan.name === "Free" ? true : false}
+                  onClick={() => handleUpgrade(plan?.name)}
+                  className={`relative overflow-hidden rounded-2xl py-4 font-semibold transition-all duration-300 border ${plan.active
+                    ? "border-pink-500/30 bg-white/[0.08] hover:border-pink-500/50 shadow-[0_0_30px_rgba(236,72,153,0.10)]"
+                    : "border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-white/20"} ${plan.name === "Free" ? "cursor-not-allowed" : "cursor-pointer"}`}
                 >
                   <div className="absolute inset-0 opacity-0 hover:opacity-100 bg-gradient-to-r from-pink-500/[0.10] via-purple-500/[0.06] to-transparent transition-all duration-500" />
 
