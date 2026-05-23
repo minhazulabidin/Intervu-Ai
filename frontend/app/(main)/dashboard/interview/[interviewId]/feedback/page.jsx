@@ -55,7 +55,7 @@ const FeedbackPage = () => {
     // LOADING SKELETON
     if (loading) {
         return (
-            <main className="relative text-white">
+            <main className="relative text-white bg-black">
 
                 <section className="w-full max-w-7xl mx-auto p-4 h-screen mt-20 animate-pulse">
 
@@ -98,8 +98,8 @@ const FeedbackPage = () => {
     }
 
     return (
-        <main>
-            <section className="relative p-4 min-h-screen text-white">
+        <main className='bg-black'>
+            <section className="relative p-4 min-h-screen text-white ">
 
                 <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
 
@@ -110,7 +110,7 @@ const FeedbackPage = () => {
                 <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none" />
 
                 {/* CONTENT */}
-                <div className="relative z-10 w-full max-w-7xl mx-auto mt-20 h-100">
+                <div className="relative z-10 w-full max-w-7xl mx-auto mt-20 h-auto">
 
                     {
                         feedBacks.length === 0 ? (
@@ -146,7 +146,7 @@ const FeedbackPage = () => {
                                 </div>
 
                                 {/* CARDS */}
-                                <div>
+                                <div className='h-auto'>
                                     {
                                         feedBacks.map(feedback => (
                                             <Card

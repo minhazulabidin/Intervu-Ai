@@ -40,72 +40,72 @@ const InterviewId = () => {
 
   if (loading) {
     return (
-      <main className="relative text-white min-h-screen">
+      <main className="relative text-white min-h-screen bg-black">
 
-  <div className="w-full max-w-7xl mx-auto md:px-0 px-3 mt-20">
+        <div className="w-full max-w-7xl mx-auto md:px-0 px-3 mt-20">
 
-    {/* TITLE */}
-    <div>
-      <div className="h-8 w-64 bg-white/5 border border-white/10 rounded-lg mx-auto animate-pulse"></div>
-    </div>
+          {/* TITLE */}
+          <div>
+            <div className="h-8 w-64 bg-white/5 border border-white/10 rounded-lg mx-auto animate-pulse"></div>
+          </div>
 
-    <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-5 mt-10">
 
-      {/* LEFT PANEL */}
-      <div className="md:order-1 order-2 space-y-5">
+            {/* LEFT PANEL */}
+            <div className="md:order-1 order-2 space-y-5">
 
-        {/* Job Info (same padding + border + radius) */}
-        <div className="px-5 py-3 space-y-3 rounded-lg border border-white/10 bg-white/5 animate-pulse">
-          <div className="h-4 bg-white/10 rounded w-3/4"></div>
-          <div className="h-4 bg-white/10 rounded w-2/3"></div>
-          <div className="h-4 bg-white/10 rounded w-1/2"></div>
+              {/* Job Info (same padding + border + radius) */}
+              <div className="px-5 py-3 space-y-3 rounded-lg border border-white/10 bg-white/5 animate-pulse">
+                <div className="h-4 bg-white/10 rounded w-3/4"></div>
+                <div className="h-4 bg-white/10 rounded w-2/3"></div>
+                <div className="h-4 bg-white/10 rounded w-1/2"></div>
+              </div>
+
+              {/* Information Box (same layout exactly) */}
+              <div className="p-5 rounded-lg border border-yellow-400/20 bg-yellow-500/10 space-y-2 animate-pulse">
+
+                {/* header line */}
+                <div className="h-4 bg-yellow-200/20 rounded w-1/3"></div>
+
+                {/* paragraph lines (match real text flow) */}
+                <div className="h-3 bg-yellow-200/10 rounded w-full"></div>
+                <div className="h-3 bg-yellow-200/10 rounded w-11/12"></div>
+                <div className="h-3 bg-yellow-200/10 rounded w-5/6"></div>
+
+                <div className="h-3 bg-yellow-200/10 rounded w-3/4"></div>
+              </div>
+
+            </div>
+
+            {/* RIGHT PANEL (IMPORTANT: match webcam area exactly) */}
+            <div className="flex justify-center md:order-2 order-1">
+
+              {/* webcam box exact replacement */}
+              <div className="w-full rounded-lg overflow-hidden border border-white/10 bg-white/5 animate-pulse">
+
+                {/* maintain aspect feel like webcam */}
+                <div className="w-full aspect-video bg-white/5"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* BUTTON AREA */}
+          <div className="flex justify-end mt-5">
+
+            <div className="h-10 w-40 bg-white/5 border border-white/10 rounded-lg animate-pulse"></div>
+
+          </div>
+
         </div>
-
-        {/* Information Box (same layout exactly) */}
-        <div className="p-5 rounded-lg border border-yellow-400/20 bg-yellow-500/10 space-y-2 animate-pulse">
-
-          {/* header line */}
-          <div className="h-4 bg-yellow-200/20 rounded w-1/3"></div>
-
-          {/* paragraph lines (match real text flow) */}
-          <div className="h-3 bg-yellow-200/10 rounded w-full"></div>
-          <div className="h-3 bg-yellow-200/10 rounded w-11/12"></div>
-          <div className="h-3 bg-yellow-200/10 rounded w-5/6"></div>
-
-          <div className="h-3 bg-yellow-200/10 rounded w-3/4"></div>
-        </div>
-
-      </div>
-
-      {/* RIGHT PANEL (IMPORTANT: match webcam area exactly) */}
-      <div className="flex justify-center md:order-2 order-1">
-
-        {/* webcam box exact replacement */}
-        <div className="w-full rounded-lg overflow-hidden border border-white/10 bg-white/5 animate-pulse">
-
-          {/* maintain aspect feel like webcam */}
-          <div className="w-full aspect-video bg-white/5"></div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    {/* BUTTON AREA */}
-    <div className="flex justify-end mt-5">
-
-      <div className="h-10 w-40 bg-white/5 border border-white/10 rounded-lg animate-pulse"></div>
-
-    </div>
-
-  </div>
-</main>
+      </main>
     );
   }
 
   return (
-    <main className="relative text-white min-h-screen">
+    <main className="relative text-white min-h-screen bg-black">
 
       <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
 

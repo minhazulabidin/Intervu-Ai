@@ -34,8 +34,8 @@ const StartPage = () => {
     }, [id]);
 
 
-    return <main className="w-full max-w-7xl mx-auto">
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-5 px-2 md:mt-20 mt-10">
+    return <main className=" bg-black min-h-screen">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-5 px-2 md:mt-20 mt-10 w-full max-w-7xl mx-auto">
             <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
 
             {/* Background Gradient */}
