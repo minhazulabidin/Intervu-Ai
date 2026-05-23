@@ -24,8 +24,8 @@ export default function NavbarDemo() {
       link: "/dashboard",
     },
     {
-      name: "Questions",
-      link: "/questions",
+      name: "Contact Us",
+      link: "/contact",
     },
     {
       name: "Upgrade",
