@@ -2,11 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Brain, MessageSquareText, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import ShineText from "./_compo/ShineText";
-import HomeButton from "./_compo/HomeButton";
-
+import { HomeButton } from "./_compo/HomeButton";
 
 export default function Home() {
-
   const steps = [
     {
       icon: <Brain className="w-8 h-8 md:w-10 md:h-10" />,
@@ -55,7 +53,7 @@ export default function Home() {
           </p>
 
           {/* Buttons */}
-         <HomeButton/>
+          <HomeButton />
         </div>
       </section>
 
