@@ -1,8 +1,8 @@
 "use client";
 import React from 'react'
-import useUserStore from "@/utils/zustandStore/userStore";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import useUserStore from '@/zustandStore/userStore';
 
 export const HomeButton = () => {
     const { user } = useUserStore();

@@ -9,7 +9,7 @@ import {
 import { ChevronDownIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useParams, useRouter } from 'next/navigation';
-import axios from 'axios';
+import api from '@/lib/api';
 
 const FeedbackPage = () => {
 
@@ -28,8 +28,8 @@ const FeedbackPage = () => {
 
                 setLoading(true);
 
-                const res = await axios.get(
-                    `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`
+                const res = await api.get(
+                    `/questions/getQuestions/${id}`
                 );
 
                 setFeedbacks(res?.data?.data?.feedback || []);

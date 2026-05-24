@@ -10,12 +10,12 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
-import useUserStore from "@/utils/zustandStore/userStore";
 import { UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Button } from "./ui/button";
+import useUserStore from "@/zustandStore/userStore";
 
 export default function NavbarDemo() {
   const navItems = [

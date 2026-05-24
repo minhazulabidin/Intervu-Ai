@@ -13,7 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import React, { useRef, useState } from "react";
-import useUserStore from "@/utils/zustandStore/userStore";
+import useUserStore from "@/zustandStore/userStore";
 
 
 export const Navbar = ({

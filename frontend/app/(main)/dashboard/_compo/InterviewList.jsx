@@ -1,14 +1,13 @@
 "use client"
-import useUserStore from '@/utils/zustandStore/userStore'
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import MockCard from './MockCard'
 
+import useUserStore from '@/zustandStore/userStore'
+import api from '@/lib/api'
+
 const InterviewList = () => {
-
     const { user } = useUserStore();
-
     const [allMocks, setAllMocks] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -19,9 +18,7 @@ const InterviewList = () => {
             try {
 
                 setLoading(true);
-
-                const res = await axios.get(
-                    `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions`,
+                const res = await api.get(`/questions/getQuestions`,
                     {
                         params: {
                             email: user?.email,
@@ -32,7 +29,7 @@ const InterviewList = () => {
                 setAllMocks(res?.data?.data || []);
 
             } catch (error) {
-
+                console.log(error);
                 toast.error(error.message);
 
             } finally {

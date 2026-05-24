@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
 import { Brain, MessageSquareText, TrendingUp } from "lucide-react";
-import Link from "next/link";
 import ShineText from "./_compo/ShineText";
 import { HomeButton } from "./_compo/HomeButton";
 import { Effect } from "@/components/animate-ui/primitives/effects/effect";
@@ -134,6 +132,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
             {steps.map((step, index) => (
               <Effect
+                key={index}
                 delay={(index + 1) * 200}
                 fade={true}
                 slide={true}

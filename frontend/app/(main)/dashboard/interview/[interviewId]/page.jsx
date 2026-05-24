@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import axios from "axios";
+import api from "@/lib/api";
 import { Lightbulb, WebcamIcon } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -19,8 +19,8 @@ const InterviewId = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`
+        const response = await api.get(
+          `/questions/getQuestions/${id}`
         );
 
         setQuestion(response?.data?.data);

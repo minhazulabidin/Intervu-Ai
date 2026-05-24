@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const MockCard = ({ mock, idx }) => {
-    console.log(mock)
     const route = useRouter()
     const handleFeedback = () => {
         route.push(`/dashboard/interview/${mock?._id}/feedback`)

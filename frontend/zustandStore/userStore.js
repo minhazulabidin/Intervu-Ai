@@ -5,15 +5,22 @@ const useUserStore = create(
   persist(
     (set) => ({
       user: null,
+      token: null,
 
       setUser: (user) => set({ user }),
 
-      clearUser: () => set({ user: null }),
+      setToken: (token) => set({ token }),
+
+      clearUser: () =>
+        set({
+          user: null,
+          token: null,
+        }),
     }),
     {
       name: "User",
-    },
-  ),
+    }
+  )
 );
 
-export default useUserStore ;
+export default useUserStore;

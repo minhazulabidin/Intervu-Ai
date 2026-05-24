@@ -1,15 +1,13 @@
 const { verifyToken } = require("@clerk/backend");
 const userModel = require("../model/user.model");
+const { apiResponse } = require("../helper/apiResponse");
 
-exports.authMiddleware = async (req, res, next) => {
+exports.isAutorize = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
-      return res.status(401).json({
-        success: false,
-        message: "Unauthorized",
-      });
+      return apiResponse(res, 401, "Unauthorized");
     }
 
     const token = authHeader.split(" ")[1];
@@ -21,23 +19,17 @@ exports.authMiddleware = async (req, res, next) => {
 
     // database user check
     const user = await userModel.findOne({
-      clerkId: payload.sub,
+      clerkUserId: payload.sub,
     });
 
     if (!user) {
-      return res.status(401).json({
-        success: false,
-        message: "User not found in database",
-      });
+      return apiResponse(res, 401, "User not found in database");
     }
 
     req.user = user;
 
     next();
   } catch (error) {
-    return res.status(401).json({
-      success: false,
-      message: "Invalid token",
-    });
+    return apiResponse(res, 401, "Invalid token");
   }
 };

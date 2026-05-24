@@ -8,9 +8,9 @@ import { Button } from "@/components/ui/button";
 import useSpeechToText from "react-hook-speech-to-text";
 import { Mic } from "lucide-react";
 import { toast } from "sonner";
-import axios from "axios";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import api from "@/lib/api";
 
 const RecordAnswerSection = ({
     mockInterviewQuestion,
@@ -95,8 +95,8 @@ const RecordAnswerSection = ({
                         userAnswer,
                         email: user?.primaryEmailAddress?.emailAddress,
                     };
-                    const res = await axios.post(
-                        `${process.env.NEXT_PUBLIC_SERVER_URL}/feedback/createFeedback`,
+                    const res = await api.post(
+                        `/feedback/createFeedback`,
                         payload
                     );
                     if (res.status === 200) {

@@ -10,9 +10,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import useUserStore from "@/utils/zustandStore/userStore";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import api from "@/lib/api";
+import useUserStore from "@/zustandStore/userStore";
+
 
 const AddNewQues = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -20,9 +22,10 @@ const AddNewQues = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [jobExperience, setJobExperience] = useState(0);
   const [loading, setLoading] = useState(false);
-  const user = useUserStore((state) => state.user);
+  const { user } = useUserStore();
   const [questionsData, setQuestionsData] = useState([]);
   const router = useRouter();
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -37,8 +40,8 @@ const AddNewQues = () => {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/addQuestions`,
+      const response = await api.post(
+        `/questions/addQuestions`,
         questionData
       );
 
@@ -50,7 +53,13 @@ const AddNewQues = () => {
 
       router.push(`/dashboard/interview/${saveId}`);
     } catch (error) {
-      console.log(error.response?.data);
+      if (error?.response?.data?.message) {
+        toast.error(error?.response?.data?.message)
+        router.push('/upgrade')
+        return;
+      } else {
+        return toast.error(error?.message)
+      }
     } finally {
       setLoading(false);
     }
@@ -78,7 +87,7 @@ const AddNewQues = () => {
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent
           className="max-w-2xl! border border-white/10 bg-black/70 backdrop-blur-2xl text-white shadow-[0_0_60px_rgba(168,85,247,0.15)] overflow-hidden before:absolute before:inset-0 before:rounded-xl before:border before:border-white/5 before:pointer-events-none"
-        > 
+        >
           {/* Background Glow */}
           <div className="absolute inset-0 bg-linear-to-br from-pink-500/4 via-purple-500/3 to-transparent pointer-events-none rounded-xl overflow-hidden" />
 
@@ -138,12 +147,12 @@ const AddNewQues = () => {
               </div>
 
               <div className="flex items-center justify-end mt-6 gap-4">
-                <Button 
-                type="button" 
-                variant="ghost"
-                 onClick={() => setOpenDialog(false)} 
-                 className="text-white/70 hover:text-white hover:bg-white/10 border border-white/10 cursor-pointer rounded-xl shadow-[0_0_25px_rgba(255,255,255,0.05)] transition-all duration-300"
-                 >
+                <Button
+                  type="button"
+                  variant="ghost"
+                  onClick={() => setOpenDialog(false)}
+                  className="text-white/70 hover:text-white hover:bg-white/10 border border-white/10 cursor-pointer rounded-xl shadow-[0_0_25px_rgba(255,255,255,0.05)] transition-all duration-300"
+                >
                   Cancel
                 </Button>
 

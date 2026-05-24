@@ -1,10 +1,10 @@
 "use client";
 
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import QuestionSection from "./_components/QuestionSection";
 import RecordAnswerSection from "./_components/RecordAnswerSection";
+import api from "@/lib/api";
 
 const StartPage = () => {
     const [loading, setLoading] = useState(true);
@@ -17,8 +17,8 @@ const StartPage = () => {
     useEffect(() => {
         const fetchMockInterviewQuestion = async () => {
             try {
-                const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_SERVER_URL}/questions/getQuestions/${id}`
+                const response = await api.get(
+                    `/questions/getQuestions/${id}`
                 );
                 setMockInterviewQuestion(response?.data?.data?.qaList);
             } catch (error) {
