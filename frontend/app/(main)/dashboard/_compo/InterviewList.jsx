@@ -29,15 +29,11 @@ const InterviewList = () => {
                 setAllMocks(res?.data?.data || []);
 
             } catch (error) {
-                console.log(error);
                 toast.error(error.message);
-
             } finally {
-
                 setLoading(false);
             }
         };
-
         if (user?.email) {
             fetchData();
         }

@@ -9,6 +9,6 @@ const { isAutorize } = require("../../../middleware/isAuthorize");
 
 router.post("/addQuestions", isAutorize, addQuestionController);
 router.get("/getQuestions", isAutorize, getQuestionController);
-router.get("/getQuestions/:id", isAutorize, getSingleQuestionController);
+router.get("/getQuestions/:id", getSingleQuestionController);
 
 module.exports = router;

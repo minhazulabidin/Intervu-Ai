@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Webcam from "react-webcam";
+import { toast } from "sonner";
 
 const InterviewId = () => {
   const [question, setQuestion] = useState(null);
@@ -25,7 +26,7 @@ const InterviewId = () => {
 
         setQuestion(response?.data?.data);
       } catch (error) {
-        console.log(error);
+        toast.error(error.message);
       } finally {
         setLoading(false);
       }

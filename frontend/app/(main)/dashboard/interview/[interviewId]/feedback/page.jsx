@@ -10,6 +10,7 @@ import { ChevronDownIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useParams, useRouter } from 'next/navigation';
 import api from '@/lib/api';
+import { toast } from 'sonner';
 
 const FeedbackPage = () => {
 
@@ -35,7 +36,7 @@ const FeedbackPage = () => {
                 setFeedbacks(res?.data?.data?.feedback || []);
 
             } catch (err) {
-                console.log(err);
+                toast.error(err.message);
             } finally {
                 setLoading(false);
             }

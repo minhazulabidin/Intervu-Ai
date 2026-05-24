@@ -6,10 +6,7 @@ const router = express.Router();
 router.post('/clerk', async (req, res) => {
     try {
         const event = req.body;
-
-        console.log("Webhook:", event.type);
-
-
+        
         if (event.type === 'user.created') {
             
             const userData = event.data;
@@ -19,7 +16,6 @@ router.post('/clerk', async (req, res) => {
             });
 
             if (!existingUser) {
-                console.log("webhook hit")
                 const newUser = await userModel.create({
                     fullName: `${userData.first_name || ''} ${userData.last_name || ''}`,
                     email: userData.email_addresses?.[0]?.email_address,

@@ -5,7 +5,6 @@ const { apiResponse } = require("../helper/apiResponse");
 exports.isAutorize = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
-
     if (!authHeader) {
       return apiResponse(res, 401, "Unauthorized");
     }

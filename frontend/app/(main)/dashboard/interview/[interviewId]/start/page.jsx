@@ -5,11 +5,14 @@ import { useParams } from "next/navigation";
 import QuestionSection from "./_components/QuestionSection";
 import RecordAnswerSection from "./_components/RecordAnswerSection";
 import api from "@/lib/api";
+import { toast } from "sonner";
+import useUserStore from "@/zustandStore/userStore";
 
 const StartPage = () => {
     const [loading, setLoading] = useState(true);
     const [mockInterviewQuestion, setMockInterviewQuestion] = useState([]);
     const [activeIndex, setActiveIndex] = useState(0);
+    const token = useUserStore((state) => state.token);
 
     const params = useParams();
     const id = params?.interviewId;
@@ -17,21 +20,29 @@ const StartPage = () => {
     useEffect(() => {
         const fetchMockInterviewQuestion = async () => {
             try {
+                setLoading(true);
+
                 const response = await api.get(
                     `/questions/getQuestions/${id}`
                 );
+
                 setMockInterviewQuestion(response?.data?.data?.qaList);
+
             } catch (error) {
-                console.log(error);
+
+                toast.error(error?.response?.data?.message || error.message);
+
             } finally {
-                setLoading(false)
+
+                setLoading(false);
             }
         };
 
-        if (id) {
+        if (id && token) {
             fetchMockInterviewQuestion();
         }
-    }, [id]);
+
+    }, [id, token]);
 
 
     return <main className=" bg-black min-h-screen">

@@ -1,20 +1,23 @@
-
-import useUserStore from "@/zustandStore/userStore";
 import axios from "axios";
+import useUserStore from "@/zustandStore/userStore";
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 api.interceptors.request.use(
-  (config) => {
+  async (config) => {
+
     const token = useUserStore.getState().token;
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => Promise.reject(error),
+
+  (error) => Promise.reject(error)
 );
 
 export default api;

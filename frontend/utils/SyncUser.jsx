@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUser, useAuth } from "@clerk/nextjs";
 import useUserStore from "@/zustandStore/userStore";
 
 
 export default function SyncUser() {
+    const [ready, setReady] = useState(false);
     const { user, isLoaded } = useUser();
     const { getToken } = useAuth();
     const setUser = useUserStore((state) => state.setUser);
@@ -19,7 +20,7 @@ export default function SyncUser() {
                 const token = await getToken();
 
                 setToken(token);
-
+                setReady(true);
                 setUser({
                     id: user?.id,
                     fullName: user?.fullName,

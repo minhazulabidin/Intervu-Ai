@@ -10,7 +10,6 @@ exports.globalErrorHandler = (error, req, res, next) => {
     } else if (error.message) {
         apiResponse(res, 500, error.message)
     } else {
-        console.log(error)
         apiResponse(res, 500, error)
     }
 }
