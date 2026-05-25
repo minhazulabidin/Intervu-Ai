@@ -321,6 +321,7 @@ export default function HowItWorksPage() {
             </div>
           </section>
         </Effect>
+        
       </div>
     </div>
   );
