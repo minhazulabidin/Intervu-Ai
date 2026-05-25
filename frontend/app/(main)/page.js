@@ -41,7 +41,7 @@ export default function Home() {
               inView={true}
               once={true}
             >
-              <ShineText text="Your Personal AI Mock Interview Coach" />
+              <ShineText text="Your Personal Mock Intervu AI Coach" />
             </Effect>
           </div>
 
@@ -53,10 +53,10 @@ export default function Home() {
             once={true}
           >
             <h1 className="mt-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-              Your Personal
+              Your Personal Mock
               <span className="bg-linear-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
                 {" "}
-                AI Mock Interview{" "}
+               Intervu AI{" "}
               </span>
               Coach
             </h1>
@@ -69,8 +69,8 @@ export default function Home() {
             once={true}
           >
             <p className="text-white/70 text-base md:text-md mt-4 max-w-2xl mx-auto leading-7 md:leading-8 px-2">
-              Boost your interview confidence with realistic AI-powered mock
-              interviews, instant feedback, and personalized improvement tips.
+              Boost your interview confidence with realistic mock
+              Intervu Ai, instant feedback, and personalized improvement tips.
             </p>
           </Effect>
           <Effect

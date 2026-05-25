@@ -140,7 +140,7 @@ const InterviewId = () => {
                 <Lightbulb /> Information
               </h2>
               <p className="text-yellow-100/80">
-                Enable Video Web Cam and Microphone to Start your AI Generated Mock Interview, It Has 5 question which you can answer and at the last you will get the report on the basis of your answer. NOTE: We never record your video, Web cam access you can disable at any time if you want.
+                Enable Video Web Cam and Microphone to Start your Generated Mock Intervu AI, It Has 5 question which you can answer and at the last you will get the report on the basis of your answer. NOTE: We never record your video, Web cam access you can disable at any time if you want.
               </p>
             </div>
 

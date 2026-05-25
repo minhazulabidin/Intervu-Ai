@@ -224,7 +224,7 @@ export const NavbarLogo = () => {
         alt="logo"
         width={20}
         height={20} />
-      <span className="font-medium text-white">Mock Up</span>
+      <span className="font-medium text-white">Intervu Ai</span>
     </Link>
   );
 };

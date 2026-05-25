@@ -53,7 +53,7 @@ const DashBoard = () => {
                 className=""
               >
                 <h2 className='text-gray-500'>
-                  Create and start you Ai Mockup
+                  Create and start you Mock Intervu AI
                 </h2>
               </Effect>
               <Effect

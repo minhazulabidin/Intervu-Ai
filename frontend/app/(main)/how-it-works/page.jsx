@@ -31,7 +31,7 @@ export default function HowItWorksPage() {
 
   const features = [
     {
-      title: "AI Mock Interviews",
+      title: "Mock Intervu AI",
       desc: "Practice with modern AI-generated interview questions.",
     },
     {
@@ -52,7 +52,7 @@ export default function HowItWorksPage() {
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
 
       {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-pink-500/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-175 h-175 bg-pink-500/10 blur-[150px] rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-16 mt-20">
 
@@ -62,13 +62,13 @@ export default function HowItWorksPage() {
 
           <h1 className="text-4xl md:text-7xl font-bold leading-tight mb-8">
             Practice Smarter With
-            <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
               {" "}AI-Powered Interviews
             </span>
           </h1>
 
           <p className="text-white/60 text-base md:text-xl leading-relaxed max-w-3xl mx-auto">
-            Our futuristic mock interview platform helps you simulate real interview experiences, improve communication skills, and prepare confidently for your next opportunity.
+            Our futuristic mock Intervu AI platform helps you simulate real interview experiences, improve communication skills, and prepare confidently for your next opportunity.
           </p>
         </section>
 
@@ -88,16 +88,16 @@ export default function HowItWorksPage() {
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className="group relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8 shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:border-pink-500/20 hover:-translate-y-1 transition-all duration-500"
+                className="group relative isolate overflow-hidden rounded-3xl border border-white/10 bg-white/3 backdrop-blur-2xl p-8 shadow-[0_0_40px_rgba(255,255,255,0.03)] hover:border-pink-500/20 hover:-translate-y-1 transition-all duration-500"
               >
                 {/* Glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-pink-500/[0.08] via-purple-500/[0.04] to-transparent transition-all duration-700 pointer-events-none" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-linear-to-br from-pink-500/8 via-purple-500/4 to-transparent transition-all duration-700 pointer-events-none" />
 
                 {/* Blur Glow */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-pink-500/10 blur-3xl rounded-full scale-75 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl border border-pink-500/20 bg-white/[0.04] flex items-center justify-center text-2xl font-bold text-pink-300 mb-8">
+                  <div className="w-16 h-16 rounded-2xl border border-pink-500/20 bg-white/4 flex items-center justify-center text-2xl font-bold text-pink-300 mb-8">
                     {step.number}
                   </div>
 
@@ -126,7 +126,7 @@ export default function HowItWorksPage() {
 
               <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-8">
                 Designed For Modern
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   {" "}Interview Preparation
                 </span>
               </h2>
@@ -139,7 +139,7 @@ export default function HowItWorksPage() {
                 {features.map((feature, idx) => (
                   <div
                     key={idx}
-                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-5"
+                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/3 backdrop-blur-xl p-5"
                   >
                     <div className="w-3 h-3 rounded-full bg-pink-400 mt-2 shrink-0" />
 
@@ -158,9 +158,9 @@ export default function HowItWorksPage() {
             </div>
 
             {/* Right Side */}
-            <div className="relative isolate overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-8 md:p-10 shadow-[0_0_50px_rgba(255,255,255,0.03)]">
+            <div className="relative isolate overflow-hidden rounded-[32px] border border-white/10 bg-white/3 backdrop-blur-2xl p-8 md:p-10 shadow-[0_0_50px_rgba(255,255,255,0.03)]">
 
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/[0.06] via-purple-500/[0.04] to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-br from-pink-500/6 via-purple-500/4 to-transparent pointer-events-none" />
 
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-10">
@@ -174,42 +174,42 @@ export default function HowItWorksPage() {
                     </h3>
                   </div>
 
-                  <div className="w-16 h-16 rounded-2xl bg-white/[0.05] border border-white/10 flex items-center justify-center text-2xl">
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl">
                     🚀
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <div className="rounded-2xl border border-white/10 bg-white/4 p-5">
                     <div className="flex justify-between mb-3">
                       <p className="text-white/60">Communication</p>
                       <p className="text-pink-300">92%</p>
                     </div>
 
                     <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden">
-                      <div className="h-full w-[92%] rounded-full bg-gradient-to-r from-pink-500 to-purple-500" />
+                      <div className="h-full w-[92%] rounded-full bg-linear-to-r from-pink-500 to-purple-500" />
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <div className="rounded-2xl border border-white/10 bg-white/4 p-5">
                     <div className="flex justify-between mb-3">
                       <p className="text-white/60">Technical Skills</p>
                       <p className="text-purple-300">87%</p>
                     </div>
 
                     <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden">
-                      <div className="h-full w-[87%] rounded-full bg-gradient-to-r from-purple-500 to-blue-500" />
+                      <div className="h-full w-[87%] rounded-full bg-linear-to-r from-purple-500 to-blue-500" />
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
+                  <div className="rounded-2xl border border-white/10 bg-white/4 p-5">
                     <div className="flex justify-between mb-3">
                       <p className="text-white/60">Confidence</p>
                       <p className="text-blue-300">95%</p>
                     </div>
 
                     <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden">
-                      <div className="h-full w-[95%] rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
+                      <div className="h-full w-[95%] rounded-full bg-linear-to-r from-blue-500 to-cyan-500" />
                     </div>
                   </div>
                 </div>
@@ -220,9 +220,9 @@ export default function HowItWorksPage() {
 
         {/* Final CTA */}
         <section>
-          <div className="relative isolate overflow-hidden rounded-[40px] border border-white/10 bg-white/[0.04] backdrop-blur-2xl p-10 md:p-16 text-center shadow-[0_0_50px_rgba(255,255,255,0.03)]">
+          <div className="relative isolate overflow-hidden rounded-[40px] border border-white/10 bg-white/4 backdrop-blur-2xl p-10 md:p-16 text-center shadow-[0_0_50px_rgba(255,255,255,0.03)]">
 
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-500/[0.08] via-purple-500/[0.04] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-r from-pink-500/8 via-purple-500/4 to-transparent pointer-events-none" />
 
             <div className="relative z-10 max-w-3xl mx-auto">
               <p className="text-pink-400 tracking-[0.25em] uppercase text-sm mb-5">
@@ -231,7 +231,7 @@ export default function HowItWorksPage() {
 
               <h2 className="text-3xl md:text-6xl font-bold leading-tight mb-8">
                 Prepare For Your
-                <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
                   {" "}Dream Career
                 </span>
               </h2>

@@ -14,7 +14,7 @@ export const HomeButton = () => {
                 </Button>
             </Link>
 
-            <Link href="/how-it-works">
+            <Link href="/how-it-works"  className="w-full sm:w-auto">
                 <Button
                     variant="outline"
                     className="w-full sm:w-auto h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-xl border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 text-white hover:text-white/80 cursor-pointer"
@@ -36,7 +36,7 @@ export const WorkBtn = () => {
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-pink-500/[0.10] via-purple-500/[0.06] to-transparent transition-all duration-500" />
 
                 <span className="relative z-10">
-                    Start Mock Interview
+                    Start Intervu
                 </span>
             </button>
         </Link>

@@ -8,7 +8,7 @@ export default function UpgradePage() {
     {
       name: "Free",
       price: "$0",
-      description: "Perfect for getting started with mock interviews.",
+      description: "Perfect for getting started with mock Intervu AI.",
       features: [
         "3 Mock Interviews",
         "Advanced Questions",
@@ -93,7 +93,7 @@ export default function UpgradePage() {
             transition={true}
           >
             <p className="text-white/60 mt-6 text-base md:text-lg leading-relaxed">
-              Choose a plan that matches your preparation journey and practice with a futuristic AI-powered mock interview platform.
+              Choose a plan that matches your preparation journey and practice with confidence on the mock Intervu AI platform.
             </p>
           </Effect>
         </div>

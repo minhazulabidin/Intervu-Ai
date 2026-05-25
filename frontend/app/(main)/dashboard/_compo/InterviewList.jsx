@@ -52,7 +52,7 @@ const InterviewList = () => {
                 transition={true}
             >
                 <h2 className="font-bold text-xl mb-3 text-neutral-200">
-                    Previous Mock Interview
+                    Previous Mock Intervu
                 </h2>
             </Effect>
 
