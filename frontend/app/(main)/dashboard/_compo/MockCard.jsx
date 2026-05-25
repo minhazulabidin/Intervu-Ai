@@ -14,15 +14,15 @@ const MockCard = ({ mock, idx }) => {
     }
     return (
         <Effect
-            delay={idx * 100}
+            delay={idx * 600}
             fade={true}
             slide={true}
             className=""
         >
-            <div className="group relative isolate overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-4 md:p-5 space-y-3 shadow-[0_0_30px_rgba(255,255,255,0.03)] hover:border-pink-500/20 hover:shadow-[0_0_40px_rgba(236,72,153,0.08)] transition-all duration-300">
+            <div className="group relative isolate overflow-hidden rounded-2xl border border-white/10 bg-white/3 backdrop-blur-xl p-4 md:p-5 space-y-3 shadow-[0_0_30px_rgba(255,255,255,0.03)] hover:border-pink-500/20 hover:shadow-[0_0_40px_rgba(236,72,153,0.08)] transition-all duration-300">
 
                 {/* Background Glow */}
-                <div className="absolute inset-0 z-0 bg-linear-to-br from-pink-500/5 via-purple-500/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+                <div className="absolute inset-0 z-0 bg-linear-to-br from-pink-500/5 via-purple-500/3 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
 
                 {/* Top Blur Glow */}
                 <div className="absolute top-0 right-0 w-24 h-24 bg-pink-500/10 blur-2xl rounded-full pointer-events-none scale-75 z-0" />
@@ -46,17 +46,17 @@ const MockCard = ({ mock, idx }) => {
                         <Button
                             onClick={handleFeedback}
                             variant="outline"
-                            className="flex-1 isolate rounded-xl cursor-pointer border border-white/10 bg-white/[0.04] backdrop-blur-xl text-white/80 hover:bg-white/[0.08] hover:text-white hover:border-white/20 transition-all duration-300"
+                            className="flex-1 isolate rounded-xl cursor-pointer border border-white/10 bg-white/4 backdrop-blur-xl text-white/80 hover:bg-white/8 hover:text-white hover:border-white/20 transition-all duration-300"
                         >
                             Feedback
                         </Button>
 
                         <Button
                             onClick={handleStart}
-                            className="group flex-1 relative isolate overflow-hidden rounded-xl cursor-pointer border border-white/10 bg-white/[0.05] backdrop-blur-xl text-white hover:bg-white/[0.10] hover:border-pink-500/20 shadow-[0_0_25px_rgba(236,72,153,0.06)] transition-all duration-300"
+                            className="group flex-1 relative isolate overflow-hidden rounded-xl cursor-pointer border border-white/10 bg-white/5 backdrop-blur-xl text-white hover:bg-white/10 hover:border-pink-500/20 shadow-[0_0_25px_rgba(236,72,153,0.06)] transition-all duration-300"
                         >
                             {/* Button Glow */}
-                            <div className="absolute inset-0 z-0 bg-linear-to-r from-pink-500/[0.08] via-purple-500/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
+                            <div className="absolute inset-0 z-0 bg-linear-to-r from-pink-500/8 via-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none" />
 
                             <span className="relative z-10">
                                 Start

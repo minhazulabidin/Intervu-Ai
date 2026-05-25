@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import AddNewQues from './_compo/AddNewQues'
 import InterviewList from './_compo/InterviewList'
 import { DashboardLoading } from './_compo/DashboardLoading'
+import { Effect } from '@/components/animate-ui/primitives/effects/effect'
 
 const DashBoard = () => {
 
@@ -35,15 +36,37 @@ const DashBoard = () => {
           loading ? <DashboardLoading />
             :
             <>
-              <h2 className='text-2xl font-bold text-neutral-200 mt-20'>
-                Dashboard
-              </h2>
-              <h2 className='text-gray-500'>
-                Create and start you Ai Mockup
-              </h2>
-              <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
-                <AddNewQues />
-              </div>
+              <Effect
+                delay={100}
+                fade={true}
+                slide={true}
+                className=""
+              >
+                <h2 className='text-2xl font-bold text-neutral-200 mt-20'>
+                  Dashboard
+                </h2>
+              </Effect>
+              <Effect
+                delay={200}
+                fade={true}
+                slide={true}
+                className=""
+              >
+                <h2 className='text-gray-500'>
+                  Create and start you Ai Mockup
+                </h2>
+              </Effect>
+              <Effect
+                delay={300}
+                fade={true}
+                slide={true}
+                className=""
+                transition={true}              
+              >
+                <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
+                  <AddNewQues />
+                </div>
+              </Effect>
               <InterviewList />
             </>
         }

@@ -6,6 +6,7 @@ import MockCard from './MockCard'
 import useUserStore from '@/zustandStore/userStore'
 import api from '@/lib/api'
 import { InterViewListLoading } from './DashboardLoading'
+import { Effect } from '@/components/animate-ui/primitives/effects/effect'
 
 const InterviewList = () => {
     const { user } = useUserStore();
@@ -43,10 +44,18 @@ const InterviewList = () => {
 
     return (
         <div>
+            <Effect
+                delay={400}
+                fade={true}
+                slide={true}
+                className=""
+                transition={true}
+            >
+                <h2 className="font-bold text-xl mb-3 text-neutral-200">
+                    Previous Mock Interview
+                </h2>
+            </Effect>
 
-            <h2 className="font-bold text-xl mb-3 text-neutral-200">
-                Previous Mock Interview
-            </h2>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
 

@@ -16,7 +16,7 @@ const ShineText = ({ text }) => {
                 </div>
 
                 <p
-                    className="relative text-xs tracking-wide text-white"
+                    className=" text-pink-300 text-xs font-medium"
                     style={{
                         textShadow: "0 0 8px rgba(255,255,255,0.6)",
                     }}
