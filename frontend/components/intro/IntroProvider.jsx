@@ -6,7 +6,6 @@ const IntroContext = createContext();
 
 export function IntroProvider({ children }) {
     const [introFinished, setIntroFinished] = useState(false);
-    console.log(introFinished)
     useEffect(() => {
         const timer = setTimeout(() => {
             setIntroFinished(true);

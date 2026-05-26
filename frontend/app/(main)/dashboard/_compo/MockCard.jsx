@@ -14,7 +14,7 @@ const MockCard = ({ mock, idx }) => {
     }
     return (
         <Effect
-            delay={idx * 600}
+            delay={idx * 100}
             fade={true}
             slide={true}
             className=""

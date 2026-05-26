@@ -224,7 +224,6 @@ export const NavbarLogo = ({ mobile = false }) => {
       className="relative z-20 mr-4 flex items-center gap-2 px-2 py-1"
     >
       <motion.div
-        layoutId="main-logo-wrapper"
         transition={{
           type: "spring",
           stiffness: 120,
@@ -255,7 +254,7 @@ export const NavbarLogo = ({ mobile = false }) => {
         }}
         transition={{
           delay: 0.4,
-          duration: 0.5,
+          duration: 0.2,
         }}
         className="font-medium text-white"
       >
