@@ -2,6 +2,7 @@ import { Brain, MessageSquareText, TrendingUp } from "lucide-react";
 import ShineText from "./_compo/ShineText";
 import { HomeButton } from "./_compo/HomeButton";
 import { Effect } from "@/components/animate-ui/primitives/effects/effect";
+import Script from "next/script";
 
 export default function Home() {
   const steps = [
@@ -27,6 +28,22 @@ export default function Home() {
 
   return (
     <main className="relative overflow-hidden bg-black text-white">
+      <Script
+        id="json-ld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: "Intervu AI",
+            applicationCategory: "BusinessApplication",
+            operatingSystem: "Web",
+            description:
+              "AI-powered mock interview platform with instant feedback and interview coaching.",
+            url: "https://yourdomain.com",
+          }),
+        }}
+      />
       {/* Gradient Blur */}
       <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
 
@@ -41,10 +58,10 @@ export default function Home() {
 
           <Effect delay={200} fade={true} slide={true} inView={true}>
             <h1 className="mt-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-              Your Personal Mock
+              Your Personal
               <span className="bg-linear-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
                 {" "}
-                Intervu AI{" "}
+                AI Mock Interview{" "}
               </span>
               Coach
             </h1>
@@ -61,7 +78,11 @@ export default function Home() {
           </Effect>
         </div>
       </section>
-
+      <div className="sr-only">
+        AI-powered mock interview platform for practicing technical and HR
+        interviews with instant feedback, communication analysis, and
+        personalized improvement suggestions.
+      </div>
       {/* How It Works */}
       <section className="relative px-4 sm:px-6 mb-40">
         <div className="max-w-7xl mx-auto text-center space-y-5">
