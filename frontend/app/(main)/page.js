@@ -1,8 +1,8 @@
 import { Brain, MessageSquareText, TrendingUp } from "lucide-react";
 import ShineText from "./_compo/ShineText";
 import { HomeButton } from "./_compo/HomeButton";
-import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 import Script from "next/script";
+import { Effect } from "@/components/animate-ui/primitives/effects/effect";
 
 export default function Home() {
   const steps = [
@@ -48,7 +48,7 @@ export default function Home() {
       <div className="absolute -top-40 md:-top-50 left-1/2 -translate-x-1/2 w-87.5 h-87.5 md:w-175 md:h-175 bg-pink-500/10 blur-[100px] md:blur-[120px] rounded-full z-0 pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20">
+      <header className="min-h-screen flex items-center justify-center px-4 sm:px-6 py-20">
         <div className="max-w-5xl mx-auto text-center relative z-10">
           <div className="flex justify-center">
             <Effect delay={100} fade={true} slide={true} inView={true}>
@@ -68,7 +68,7 @@ export default function Home() {
           </Effect>
           <Effect delay={300} fade={true} slide={true} inView={true}>
             <p className="text-white/70 text-base md:text-md mt-4 max-w-2xl mx-auto leading-7 md:leading-8 px-2">
-              Boost your interview confidence with realistic mock Intervu Ai,
+              Boost your interview confidence with realistic AI mock interviews,
               instant feedback, and personalized improvement tips.
             </p>
           </Effect>
@@ -77,12 +77,13 @@ export default function Home() {
             <HomeButton />
           </Effect>
         </div>
-      </section>
-      <div className="sr-only">
-        AI-powered mock interview platform for practicing technical and HR
-        interviews with instant feedback, communication analysis, and
-        personalized improvement suggestions.
-      </div>
+        <div className="sr-only">
+          AI-powered mock interview platform for practicing technical and HR
+          interviews with instant feedback, communication analysis, and
+          personalized improvement suggestions.
+        </div>
+      </header>
+
       {/* How It Works */}
       <section className="relative px-4 sm:px-6 mb-40">
         <div className="max-w-7xl mx-auto text-center space-y-5">

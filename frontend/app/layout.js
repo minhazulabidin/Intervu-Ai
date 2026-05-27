@@ -5,9 +5,9 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import SyncUser from "@/utils/SyncUser";
 
-import IntroAnimation from "@/components/intro/IntroAnimation";
-import { IntroProvider } from "@/components/intro/IntroProvider";
 import { LayoutGroup } from "framer-motion";
+import { IntroProvider } from "@/components/intro/IntroProvider";
+import IntroAnimation from "@/components/intro/IntroAnimation";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -15,38 +15,48 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://yourdomain.com"),
+  metadataBase: new URL("https://intervuai.com"),
+
+  alternates: {
+    canonical: "/",
+  },
 
   title: {
-    default: "Intervu AI - AI Mock Interview Platform",
+    default: "Intervu AI - AI Mock Interview Practice & Instant Feedback",
     template: "%s | Intervu AI",
   },
 
   description:
-    "Practice AI-powered mock interviews, improve communication skills, and get instant interview feedback with Intervu AI.",
+    "Practice realistic AI mock interviews and get instant feedback to improve your interview skills.",
+
+  applicationName: "Intervu AI",
 
   keywords: [
     "AI mock interview",
     "mock interview platform",
     "AI interview practice",
     "job interview preparation",
-    "Next.js AI interview app",
-    "interview feedback AI",
     "technical interview practice",
     "HR interview practice",
-    "AI career coach",
+    "AI interview coach",
   ],
 
   authors: [{ name: "Intervu AI Team" }],
 
   creator: "Intervu AI",
 
+  themeColor: "#000000",
+
   openGraph: {
     title: "Intervu AI - AI Mock Interview Practice & Instant Feedback",
+
     description:
-      "Practice realistic AI mock interviews, improve communication skills, and receive instant feedback to prepare for technical and HR job interviews.",
-    url: "https://yourdomain.com",
+      "Practice realistic AI mock interviews and get instant feedback to improve your interview skills.",
+
+    url: "https://intervuai.com",
+
     siteName: "Intervu AI",
+
     images: [
       {
         url: "/og-image.png",
@@ -55,15 +65,19 @@ export const metadata = {
         alt: "Intervu AI",
       },
     ],
+
     locale: "en_US",
     type: "website",
   },
 
   twitter: {
     card: "summary_large_image",
+
     title: "Intervu AI - AI Mock Interview Practice & Instant Feedback",
+
     description:
-      "Practice interviews with AI and improve faster with smart feedback. Practice realistic AI mock interviews, improve communication skills, and receive instant feedback to prepare for technical and HR job interviews.",
+      "Practice realistic AI mock interviews and get instant feedback to improve your interview skills.",
+
     images: ["/og-image.png"],
   },
 

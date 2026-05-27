@@ -1,9 +1,9 @@
-'use client';;
+'use client';
 import * as React from 'react';
 import { motion } from 'motion/react';
 
-import { useIsInView } from '@/hooks/use-is-in-view';
 import { Slot } from '@/components/animate-ui/primitives/animate/slot';
+import { useIsInView } from '@/hooks/use-is-in-view';
 
 const DEFAULT_SLIDE_DIRECTION = 'up';
 const DEFAULT_SLIDE_OFFSET = 100;
