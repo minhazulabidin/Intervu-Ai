@@ -9,7 +9,12 @@ const db = require("./config/db.config");
 const port = process.env.PORT || 8000;
 const app = express();
 
-app.use(cors({ credentials: true, origin: process.env.CLIENT_URL, }));
+app.use(cors({
+  origin: [
+    "https://ai-inter-vu.vercel.app"
+  ],
+  credentials: true
+}));
 
 app.use(express.json());
 db();
