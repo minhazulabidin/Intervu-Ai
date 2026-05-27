@@ -5,6 +5,8 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import SyncUser from "@/utils/SyncUser";
 
+import { Analytics } from "@vercel/analytics/next"
+
 import { LayoutGroup } from "framer-motion";
 import { IntroProvider } from "@/components/intro/IntroProvider";
 import IntroAnimation from "@/components/intro/IntroAnimation";
