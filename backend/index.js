@@ -9,7 +9,7 @@ const db = require("./config/db.config");
 const port = process.env.PORT || 8000;
 const app = express();
 
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: true, credentials: true, origin: process.env.CLIENT_URL, }));
 
 app.use(express.json());
 db();
