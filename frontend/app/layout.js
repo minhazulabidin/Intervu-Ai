@@ -106,6 +106,7 @@ export default function RootLayout({ children }) {
               <Toaster />
 
               {children}
+              <Analytics />
             </LayoutGroup>
           </IntroProvider>
         </body>
