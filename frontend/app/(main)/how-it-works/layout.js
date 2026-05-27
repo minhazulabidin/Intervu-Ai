@@ -23,7 +23,7 @@ export const metadata = {
     description:
       "Discover how Intervu AI simulates real interviews with smart AI feedback, personalized interview sessions, and performance tracking.",
 
-    url: "https://yourdomain.com/how-it-works",
+    url: "https://ai-inter-vu.vercel.app/how-it-works",
 
     siteName: "Intervu AI",
 

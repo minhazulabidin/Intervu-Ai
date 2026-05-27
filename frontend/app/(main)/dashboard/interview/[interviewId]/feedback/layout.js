@@ -15,7 +15,7 @@ export const metadata = {
     title: "Your Interview Feedback - Intervu AI",
     description:
       "Analyze your mock interview performance with AI feedback, ratings, and improvement tips.",
-    url: "https://yourdomain.com/dashboard",
+    url: "https://ai-inter-vu.vercel.app/dashboard",
     siteName: "Intervu AI",
     images: [
       {

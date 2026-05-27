@@ -22,7 +22,7 @@ export const metadata = {
     description:
       "Choose the best Intervu AI plan and unlock unlimited mock interviews, advanced AI feedback, and smarter interview preparation tools.",
 
-    url: "https://yourdomain.com/upgrade",
+    url: "https://ai-inter-vu.vercel.app/upgrade",
 
     siteName: "Intervu AI",
 

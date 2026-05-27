@@ -40,7 +40,7 @@ export default function Home() {
             operatingSystem: "Web",
             description:
               "AI-powered mock interview platform with instant feedback and interview coaching.",
-            url: "https://yourdomain.com",
+            url: "https://ai-inter-vu.vercel.app",
           }),
         }}
       />

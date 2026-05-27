@@ -21,7 +21,7 @@ export const metadata = {
     title: "Contact Us - Intervu AI",
     description:
       "Reach out to Intervu AI for support, feedback, or collaboration opportunities.",
-    url: "https://yourdomain.com/contact",
+    url: "https://ai-inter-vu.vercel.app/contact",
     siteName: "Intervu AI",
     images: [
       {

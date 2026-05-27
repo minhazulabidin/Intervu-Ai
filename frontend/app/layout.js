@@ -15,7 +15,7 @@ const outfit = Outfit({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://intervuai.com"),
+  metadataBase: new URL("https://ai-inter-vu.vercel.app"),
 
   alternates: {
     canonical: "/",
@@ -53,7 +53,7 @@ export const metadata = {
     description:
       "Practice realistic AI mock interviews and get instant feedback to improve your interview skills.",
 
-    url: "https://intervuai.com",
+    url: "https://ai-inter-vu.vercel.app",
 
     siteName: "Intervu AI",
 
