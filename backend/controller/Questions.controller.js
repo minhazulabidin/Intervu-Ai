@@ -21,7 +21,7 @@ exports.addQuestionController = asyncController(async (req, res) => {
   const existingQues = await questionsModel.find({ userId: user._id });
 
   if (existingQues.length >= 3) {
-    return apiResponse(res, 400, "You already genarated has 5 questions");
+    return apiResponse(res, 400, "You already generated has 5 questions");
   } else {
     // init gemini
     const ai = new GoogleGenAI({

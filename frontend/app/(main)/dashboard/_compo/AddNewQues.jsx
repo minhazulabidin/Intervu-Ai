@@ -53,7 +53,7 @@ const AddNewQues = () => {
 
       router.push(`/dashboard/interview/${saveId}`);
     } catch (error) {
-      if (error?.response?.data?.message) {
+      if (error?.response?.data?.message == "You already generated has 5 questions") {
         toast.error(error?.response?.data?.message)
         router.push('/upgrade')
         return;
