@@ -113,9 +113,6 @@ const InterviewId = () => {
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(168,85,247,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(236,72,153,0.08),transparent_30%)] pointer-events-none" />
 
-      {/* Noise Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('/noise.png')] pointer-events-none" />
-
       <div className="relative w-full max-w-7xl mx-auto md:px-0 px-3 mt-20">
 
         <div className="">
